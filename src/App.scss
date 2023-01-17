@@ -1,0 +1,38 @@
+.drbc-layout-mock {
+  width: 100vw;
+  overflow-y: scroll;
+  background-color: #a7a9a8;
+  min-height: 100vh;
+
+  .drbc-content-container-mock {
+    background-color: white;
+    width: 950px;
+    margin: 0 auto;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    .drbc-header-mock,
+    .drbc-footer-mock {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 30px;
+    }
+
+    .drbc-header-mock {
+      background-color: #cbe2f4;
+      height: 188px;
+      width: 100%;
+      box-shadow: 0px 25px 5px 0px rgba(0, 0, 0, 0.2);
+      margin-bottom: 35px;
+    }
+
+    .drbc-footer-mock {
+      background-color: rgba(0, 0, 0, 0.05);
+      height: 150px;
+      width: 100%;
+    }
+  }
+}
