@@ -22,17 +22,38 @@
     }
 
     .drbc-header-mock {
-      background-color: #cbe2f4;
+      background-color: #194186;
+      color: white;
       height: 188px;
       width: 100%;
       box-shadow: 0px 25px 5px 0px rgba(0, 0, 0, 0.2);
       margin-bottom: 35px;
+      margin-top: 0px;
     }
 
     .drbc-footer-mock {
       background-color: rgba(0, 0, 0, 0.05);
       height: 150px;
       width: 100%;
+      margin: 0;
+    }
+
+    #drb-idf-main-container {
+      .top-panel {
+        display: flex;
+      }
+
+      .bottom-panel {
+        display: flex;
+
+        .left-panel {
+          width: 350px;
+        }
+
+        .right-panel {
+          width: 600px;
+        }
+      }
     }
   }
 }

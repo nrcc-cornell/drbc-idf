@@ -4,10 +4,17 @@ import './index.scss';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+import { MapProvider } from './contexts/map.context';
+import { OptionsProvider } from './contexts/options.context';
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <OptionsProvider>
+      <MapProvider>
+        <App />
+      </MapProvider>
+    </OptionsProvider>
   </React.StrictMode>
 );
 

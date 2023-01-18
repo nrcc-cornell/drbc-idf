@@ -1,48 +1,22 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders mocked content and layout 1`] = `
+exports[`renders matches snapshot 1`] = `
 Object {
   "asFragment": [Function],
   "baseElement": <body>
     <div>
       <div
-        class="drbc-layout-mock"
+        class="legend-container"
       >
-        <div
-          class="drbc-content-container-mock"
-        >
-          <div
-            class="drbc-header-mock"
-          >
-            DRBC Header Content
-          </div>
-          <div
-            class="drbc-footer-mock"
-          >
-            DRBC Footer Content
-          </div>
-        </div>
+        Legend
       </div>
     </div>
   </body>,
   "container": <div>
     <div
-      class="drbc-layout-mock"
+      class="legend-container"
     >
-      <div
-        class="drbc-content-container-mock"
-      >
-        <div
-          class="drbc-header-mock"
-        >
-          DRBC Header Content
-        </div>
-        <div
-          class="drbc-footer-mock"
-        >
-          DRBC Footer Content
-        </div>
-      </div>
+      Legend
     </div>
   </div>,
   "debug": [Function],

@@ -1,0 +1,87 @@
+{
+  "selectBy": {
+    "name": "Select By",
+    "options": [
+      {
+        "value": "county",
+        "ariaLabel": "select by county",
+        "text": "County"
+      },
+      {
+        "value": "muni",
+        "ariaLabel": "select by municipality",
+        "text": "Municipality"
+      },
+      {
+        "value": "huc12",
+        "ariaLabel": "select by HUC",
+        "text": "HUC 12"
+      }
+    ]
+  },
+  "returnPeriod": {
+    "name": "Return Period",
+    "options": [
+      {
+        "value": "2",
+        "ariaLabel": "2-year return period",
+        "text": "2-year"
+      },
+      {
+        "value": "5",
+        "ariaLabel": "5-year return period",
+        "text": "5-year"
+      },
+      {
+        "value": "10",
+        "ariaLabel": "10-year return period",
+        "text": "10-year"
+      },
+      {
+        "value": "25",
+        "ariaLabel": "25-year return period",
+        "text": "25-year"
+      },
+      {
+        "value": "50",
+        "ariaLabel": "50-year return period",
+        "text": "50-year"
+      },
+      {
+        "value": "100",
+        "ariaLabel": "100-year return period",
+        "text": "100-year"
+      }
+    ]
+  },
+  "rcp": {
+    "name": "Emission Scenario",
+    "options": [
+      {
+        "value": "45",
+        "ariaLabel": "low emission scenario RCP 4.5",
+        "text": "Low RCP 4.5"
+      },
+      {
+        "value": "85",
+        "ariaLabel": "high emission scenario RCP 8.5",
+        "text": "High RCP 8.5"
+      }
+    ]
+  },
+  "timeFrame": {
+    "name": "Time Period",
+    "options": [
+      {
+        "value": "2020-2069",
+        "ariaLabel": "time period 2020-2069",
+        "text": "2020-2069"
+      },
+      {
+        "value": "2050-2099",
+        "ariaLabel": "time period 2050-2099",
+        "text": "2050-2099"
+      }
+    ]
+  }
+}
