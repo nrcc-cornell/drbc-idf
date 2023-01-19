@@ -39,20 +39,16 @@
     }
 
     #drb-idf-main-container {
-      .top-panel {
-        display: flex;
+      .panel-left {
+        width: 350px;
       }
 
-      .bottom-panel {
+      .panel-right {
+        width: 600px;
+      }
+
+      .panel-row {
         display: flex;
-
-        .left-panel {
-          width: 350px;
-        }
-
-        .right-panel {
-          width: 600px;
-        }
       }
     }
   }

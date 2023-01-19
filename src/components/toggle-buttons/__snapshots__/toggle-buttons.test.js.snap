@@ -9,9 +9,10 @@ Object {
         class="toggle-buttons-container"
       >
         <p
-          class="MuiTypography-root MuiTypography-body1 css-4s2st-MuiTypography-root"
+          class="MuiTypography-root MuiTypography-body1 css-y2mu3f-MuiTypography-root"
         >
           Test
+          :
         </p>
         <div
           aria-label="Test"
@@ -53,9 +54,10 @@ Object {
       class="toggle-buttons-container"
     >
       <p
-        class="MuiTypography-root MuiTypography-body1 css-4s2st-MuiTypography-root"
+        class="MuiTypography-root MuiTypography-body1 css-y2mu3f-MuiTypography-root"
       >
         Test
+        :
       </p>
       <div
         aria-label="Test"

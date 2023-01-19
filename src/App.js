@@ -15,16 +15,24 @@ function App() {
         <h1 className='drbc-header-mock'>DRBC Header Content</h1>
 
         <div id='drb-idf-main-container'>
-          <div className='top-panel'>
-            <Legend />
+          <div className='panel-row'>
             <OptionPanel />
           </div>
-          <div className='bottom-panel'>
-            <div className='left-panel'>
+
+          <div className='panel-row'>
+            <div className='panel-left'>
+              <Legend />
+            </div>
+            <div className='panel-right'>
+              <Nav />
+            </div>
+          </div>
+
+          <div className='panel-row'>
+            <div className='panel-left'>
               <MapComponent />
             </div>
-            <div className='right-panel'>
-              <Nav />
+            <div className='panel-right'>
               <Content />
             </div>
           </div>

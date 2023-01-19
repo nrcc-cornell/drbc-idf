@@ -27,6 +27,7 @@ const StyledToggleButton = styled(ToggleButton)(() => ({
 
 const StyledLabel = styled(Typography)(() => ({
   '&.MuiTypography-root': {
+    fontFamily: "Georgia, 'Times New Roman', Times, serif",
     fontSize: '14px',
   },
 }));
@@ -45,7 +46,7 @@ export default function ToggleButtons({
 
   return (
     <div className='toggle-buttons-container'>
-      <StyledLabel>{label}</StyledLabel>
+      <StyledLabel>{label}:</StyledLabel>
       <ToggleButtonGroup
         value={currentValue}
         exclusive

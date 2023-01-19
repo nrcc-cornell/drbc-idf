@@ -1,3 +1,40 @@
+$bar-width: calc(100% - 50px);
+$label-width: calc($bar-width + 14px);
+
 .legend-container {
-  border: 1px solid green;
+  margin-bottom: 3px;
+
+  .legend-colors {
+    height: 15px;
+    width: $bar-width;
+    margin: 0 auto;
+    border-top: 1px solid rgb(120, 120, 120);
+    border-bottom: 1px solid rgb(120, 120, 120);
+    background: rgb(226, 181, 51);
+    background: linear-gradient(
+      90deg,
+      rgba(226, 181, 51, 1) 0%,
+      rgba(26, 124, 0, 1) 50%,
+      rgba(0, 46, 255, 1) 100%
+    );
+    display: flex;
+    justify-content: space-between;
+
+    .label-tick {
+      height: 19px;
+      width: 1px;
+      background-color: black;
+      position: relative;
+      bottom: 4px;
+    }
+  }
+
+  .legend-labels {
+    display: flex;
+    justify-content: space-between;
+    width: $label-width;
+    margin: 0 auto;
+    font-size: 11px;
+    margin-bottom: 2px;
+  }
 }

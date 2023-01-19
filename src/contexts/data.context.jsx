@@ -24,7 +24,7 @@ const loadDataFile = (selectBy, setFunction) => {
 };
 
 const calculateColors = (fileData, returnPeriod, rcp, timeFrame, matcher) => {
-  const { locVals, min, max } = fileData.reduce(
+  const { locVals, rawMin, rawMax } = fileData.reduce(
     (acc, locationObj) => {
       const id = locationObj.id;
       let value;
@@ -40,23 +40,26 @@ const calculateColors = (fileData, returnPeriod, rcp, timeFrame, matcher) => {
           ][3];
       }
 
-      if (value < acc.min) acc.min = value;
-      if (value > acc.max) acc.max = value;
+      if (value < acc.rawMin) acc.rawMin = value;
+      if (value > acc.rawMax) acc.rawMax = value;
       acc.locVals.push([id, value]);
       return acc;
     },
-    { locVals: [], min: 999, max: -999 }
+    { locVals: [], rawMin: 999, rawMax: -999 }
   );
 
-  const minDiff = Math.abs(min - 1);
-  const maxDiff = Math.abs(max - 1);
-  const diff = Math.max(minDiff, maxDiff);
+  console.log(rawMin, rawMax);
+  const diff = Math.max(Math.abs(rawMin - 1), Math.abs(rawMax - 1));
+  const min = Math.round((1 - diff) * 100) / 100;
+  const max = Math.round((1 + diff) * 100) / 100;
+  console.log(diff, min, max);
 
   const rainbow = new Rainbow();
   rainbow.setSpectrum('#e2b533', '#1a7c00', '#002eff');
-  rainbow.setNumberRange(1 - diff, 1 + diff);
+  rainbow.setNumberRange(min, max);
   let colors = ['match', ['get', matcher]];
 
+  console.log(locVals);
   const tracker = [];
   locVals.forEach(([id, value], i) => {
     if (tracker.includes(id)) {
