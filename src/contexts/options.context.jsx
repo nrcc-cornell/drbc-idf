@@ -46,6 +46,9 @@ export const OptionsProvider = ({ children }) => {
   const value = {
     selectors,
     selectBy,
+    returnPeriod,
+    rcp,
+    timeFrame,
   };
   return (
     <OptionsContext.Provider value={value}>{children}</OptionsContext.Provider>

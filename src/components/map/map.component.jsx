@@ -5,6 +5,7 @@ import Map from 'react-map-gl';
 
 import { MapContext } from '../../contexts/map.context';
 import { OptionsContext } from '../../contexts/options.context';
+import { DataContext } from '../../contexts/data.context';
 import overlayInfo from '../../contexts/overlayInfo.json';
 
 import Button from '../button/button.component';
@@ -33,6 +34,7 @@ export default function MapComponent() {
     isInitView,
   } = useContext(MapContext);
   const { selectBy } = useContext(OptionsContext);
+  const { mapColors } = useContext(DataContext);
 
   return (
     <div className='map-container'>
@@ -49,7 +51,7 @@ export default function MapComponent() {
         onMove={(evt) => handlePanning(evt.viewState)}
         onClick={handleMapClick}
         onLoad={handleLoad}
-        minZoom={5}
+        minZoom={5.5}
         maxZoom={14}
       >
         {Object.values(overlayInfo).map((overlay, i) => (
@@ -57,7 +59,7 @@ export default function MapComponent() {
             key={i}
             {...overlay}
             opacity={selectBy === overlay.name ? 0.5 : 0}
-            colors={[]}
+            colors={mapColors}
           />
         ))}
       </Map>

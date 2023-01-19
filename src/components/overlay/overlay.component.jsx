@@ -7,9 +7,8 @@ export default function Overlay({
   sourceUrl,
   sourceLayer,
   opacity,
-  // colors,
+  colors,
 }) {
-  // console.log(colors);
   return (
     <Source type='vector' url={sourceUrl} id={name + '-colors'}>
       <Layer
@@ -17,10 +16,11 @@ export default function Overlay({
         type='fill'
         source-layer={sourceLayer}
         paint={{
-          'fill-color': 'blue',
+          'fill-color': colors,
           'fill-opacity': opacity,
           'fill-outline-color': 'black',
         }}
+        beforeId='basin-outline'
       />
     </Source>
   );
@@ -31,6 +31,5 @@ Overlay.propTypes = {
   sourceUrl: PropTypes.string.isRequired,
   sourceLayer: PropTypes.string.isRequired,
   opacity: PropTypes.number.isRequired,
-  colors: PropTypes.array,
-  // colors: PropTypes.array.isRequired,
+  colors: PropTypes.array.isRequired,
 };

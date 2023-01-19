@@ -54,13 +54,11 @@ export const MapProvider = ({ children }) => {
   const handleMapClick = async (e) => {
     if (mapRef.current) {
       const feature = e.features[0];
-      console.log(e.features.map((f) => f.properties.NAME));
       if (feature) {
         // calculate the bounding box of the feature
         const [minLng, minLat, maxLng, maxLat] = bbox(feature);
 
-        console.log(feature);
-        console.log(minLng, minLat, maxLng, maxLat);
+        console.log(feature.properties);
 
         mapRef.current.fitBounds(
           [

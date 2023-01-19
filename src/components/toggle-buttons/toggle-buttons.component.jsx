@@ -9,12 +9,18 @@ const StyledToggleButton = styled(ToggleButton)(() => ({
     borderColor: 'rgb(49, 115, 214)',
     paddingTop: '9px',
     fontSize: '12px',
+    textTransform: 'none',
     '&:hover': {
       backgroundColor: 'rgba(49, 115, 214, 0.1)',
     },
     '&.Mui-selected': {
       backgroundColor: '#194186',
       color: 'white',
+    },
+    '&.Mui-disabled': {
+      backgroundColor: 'rgba(0,0,0,0.05)',
+      color: 'rgb(120,120,120)',
+      fontStyle: 'italic',
     },
   },
 }));
@@ -53,6 +59,7 @@ export default function ToggleButtons({
             key={optionInfo.value}
             value={optionInfo.value}
             aria-label={optionInfo.ariaLabel || ''}
+            disabled={optionInfo.disabled || false}
           >
             {optionInfo.text}
           </StyledToggleButton>
