@@ -6,14 +6,15 @@ import { OptionsContext } from '../../contexts/options.context';
 
 import './nav.styles.scss';
 
+const TABS_HEIGHT = '36px';
 const StyledTabs = styled((props) => (
   <Tabs
     {...props}
     TabIndicatorProps={{ children: <span className='MuiTabs-indicatorSpan' /> }}
   />
 ))({
-  minHeight: '35px',
-  height: '35px',
+  minHeight: TABS_HEIGHT,
+  height: TABS_HEIGHT,
   '& .MuiTabs-indicator': {
     display: 'none',
   },
@@ -23,14 +24,16 @@ const StyledTab = styled((props) => <Tab {...props} />)(() => ({
   textTransform: 'none',
   fontFamily: "Georgia, 'Times New Roman', Times, serif",
   color: 'rgb(80,80,80)',
-  minHeight: '35px',
-  height: '35px',
+  fontWeight: 'bold',
+  minHeight: TABS_HEIGHT,
+  height: TABS_HEIGHT,
   boxSizing: 'border-box',
-  border: '1px solid rgb(200,200,200)',
+  borderTop: '1px solid rgb(200,200,200)',
+  borderLeft: '1px solid rgb(200,200,200)',
   borderBottom: 'none',
   '&.Mui-selected': {
     color: 'white',
-    backgroundColor: '#194186',
+    backgroundColor: '#36845c',
     border: 'none',
   },
   '&.Mui-focusVisible': {

@@ -19,7 +19,9 @@ function App() {
             <OptionPanel />
           </div>
 
-          <div className='panel-row'>
+          <div className='row-divider' />
+
+          <div className='panel-row middle-row'>
             <div className='panel-left'>
               <Legend />
             </div>
@@ -28,7 +30,7 @@ function App() {
             </div>
           </div>
 
-          <div className='panel-row'>
+          <div className='panel-row bottom-row'>
             <div className='panel-left'>
               <MapComponent />
             </div>

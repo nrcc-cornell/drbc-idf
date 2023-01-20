@@ -9,6 +9,52 @@ Object {
         class="legend-container"
       >
         <div
+          class="legend"
+        >
+          <div
+            class="legend-labels"
+          >
+            <div
+              class="legend-label"
+            >
+              0
+            </div>
+            <div
+              class="legend-label"
+            >
+              1.0
+            </div>
+            <div
+              class="legend-label"
+            >
+              2
+            </div>
+          </div>
+          <div
+            class="legend-colors"
+          >
+            <div
+              class="label-tick"
+            />
+            <div
+              class="label-tick"
+            />
+            <div
+              class="label-tick"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div
+      class="legend-container"
+    >
+      <div
+        class="legend"
+      >
+        <div
           class="legend-labels"
         >
           <div
@@ -40,44 +86,6 @@ Object {
             class="label-tick"
           />
         </div>
-      </div>
-    </div>
-  </body>,
-  "container": <div>
-    <div
-      class="legend-container"
-    >
-      <div
-        class="legend-labels"
-      >
-        <div
-          class="legend-label"
-        >
-          0
-        </div>
-        <div
-          class="legend-label"
-        >
-          1.0
-        </div>
-        <div
-          class="legend-label"
-        >
-          2
-        </div>
-      </div>
-      <div
-        class="legend-colors"
-      >
-        <div
-          class="label-tick"
-        />
-        <div
-          class="label-tick"
-        />
-        <div
-          class="label-tick"
-        />
       </div>
     </div>
   </div>,

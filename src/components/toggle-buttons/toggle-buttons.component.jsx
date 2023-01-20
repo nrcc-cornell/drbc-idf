@@ -10,6 +10,7 @@ const StyledToggleButton = styled(ToggleButton)(() => ({
     paddingTop: '9px',
     fontSize: '12px',
     textTransform: 'none',
+    fontFamily: 'Verdana, Arial, Helvetica, sans-serif',
     '&:hover': {
       backgroundColor: 'rgba(49, 115, 214, 0.1)',
     },

@@ -22,7 +22,7 @@ Object {
           <button
             aria-label="button one"
             aria-pressed="true"
-            class="MuiButtonBase-root MuiToggleButton-root Mui-selected MuiToggleButton-sizeSmall MuiToggleButton-standard MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal css-11x2i62-MuiButtonBase-root-MuiToggleButton-root"
+            class="MuiButtonBase-root MuiToggleButton-root Mui-selected MuiToggleButton-sizeSmall MuiToggleButton-standard MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal css-15dew42-MuiButtonBase-root-MuiToggleButton-root"
             tabindex="0"
             type="button"
             value="btn1"
@@ -35,7 +35,7 @@ Object {
           <button
             aria-label="button two"
             aria-pressed="false"
-            class="MuiButtonBase-root MuiToggleButton-root MuiToggleButton-sizeSmall MuiToggleButton-standard MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal css-11x2i62-MuiButtonBase-root-MuiToggleButton-root"
+            class="MuiButtonBase-root MuiToggleButton-root MuiToggleButton-sizeSmall MuiToggleButton-standard MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal css-15dew42-MuiButtonBase-root-MuiToggleButton-root"
             tabindex="0"
             type="button"
             value="btn2"
@@ -67,7 +67,7 @@ Object {
         <button
           aria-label="button one"
           aria-pressed="true"
-          class="MuiButtonBase-root MuiToggleButton-root Mui-selected MuiToggleButton-sizeSmall MuiToggleButton-standard MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal css-11x2i62-MuiButtonBase-root-MuiToggleButton-root"
+          class="MuiButtonBase-root MuiToggleButton-root Mui-selected MuiToggleButton-sizeSmall MuiToggleButton-standard MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal css-15dew42-MuiButtonBase-root-MuiToggleButton-root"
           tabindex="0"
           type="button"
           value="btn1"
@@ -80,7 +80,7 @@ Object {
         <button
           aria-label="button two"
           aria-pressed="false"
-          class="MuiButtonBase-root MuiToggleButton-root MuiToggleButton-sizeSmall MuiToggleButton-standard MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal css-11x2i62-MuiButtonBase-root-MuiToggleButton-root"
+          class="MuiButtonBase-root MuiToggleButton-root MuiToggleButton-sizeSmall MuiToggleButton-standard MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal css-15dew42-MuiButtonBase-root-MuiToggleButton-root"
           tabindex="0"
           type="button"
           value="btn2"

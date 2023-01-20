@@ -5,35 +5,11 @@ import ToggleButtons from './toggle-buttons.component';
 
 let currentValue = 'btn1';
 
-it('render matches snapshot', () => {
-  expect(
-    render(
-      <ToggleButtons
-        label='Test'
-        currentValue={currentValue}
-        setFunction={(newValue) => (currentValue = newValue)}
-        optionsArray={[
-          {
-            value: 'btn1',
-            ariaLabel: 'button one',
-            text: 'Button 1',
-          },
-          {
-            value: 'btn2',
-            ariaLabel: 'button two',
-            text: 'Button 2',
-          },
-        ]}
-      />
-    )
-  ).toMatchSnapshot();
-});
-
-it('has correct button selected', async () => {
-  render(
+const renderToggleButtons = (tab) => {
+  return render(
     <ToggleButtons
       label='Test'
-      currentValue={currentValue}
+      currentValue={tab}
       setFunction={(newValue) => (currentValue = newValue)}
       optionsArray={[
         {
@@ -49,6 +25,14 @@ it('has correct button selected', async () => {
       ]}
     />
   );
+};
+
+it('render matches snapshot', () => {
+  expect(renderToggleButtons(currentValue)).toMatchSnapshot();
+});
+
+it('has correct button selected', async () => {
+  renderToggleButtons(currentValue);
   expect(screen.getByText('Button 1').className.includes('Mui-selected')).toBe(
     true
   );
@@ -58,25 +42,7 @@ it('has correct button selected', async () => {
 });
 
 it('changes button on click', async () => {
-  const { rerender } = render(
-    <ToggleButtons
-      label='Test'
-      currentValue={currentValue}
-      setFunction={(newValue) => (currentValue = newValue)}
-      optionsArray={[
-        {
-          value: 'btn1',
-          ariaLabel: 'button one',
-          text: 'Button 1',
-        },
-        {
-          value: 'btn2',
-          ariaLabel: 'button two',
-          text: 'Button 2',
-        },
-      ]}
-    />
-  );
+  const { rerender } = renderToggleButtons(currentValue);
   await userEvent.click(screen.getByText('Button 2'));
   rerender(
     <ToggleButtons

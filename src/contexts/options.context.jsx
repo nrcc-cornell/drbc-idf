@@ -2,8 +2,7 @@ import React, { createContext, useState } from 'react';
 import PropTypes from 'prop-types';
 
 import selectorsInfo from './selectorsInfo.json';
-
-const NAV_TABS = ['User Guide', 'IDF Curve', 'About the Data'];
+import tabsInfo from './tabsInfo.json';
 
 // Set up initial state of context
 export const OptionsContext = createContext({
@@ -54,7 +53,8 @@ export const OptionsProvider = ({ children }) => {
     timeFrame,
     navTab,
     setNavTab,
-    navTabOptions: NAV_TABS,
+    navTabOptions: tabsInfo.map((tabInfo) => tabInfo.name),
+    tabContent: tabsInfo[navTab].content,
   };
   return (
     <OptionsContext.Provider value={value}>{children}</OptionsContext.Provider>

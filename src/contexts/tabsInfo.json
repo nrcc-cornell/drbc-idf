@@ -1,0 +1,43 @@
+[
+  {
+    "name": "User Guide",
+    "content": [
+      {
+        "heading": "Choosing Options",
+        "body": [
+          {
+            "element": "p",
+            "text": "Click on desired option and map will update."
+          }
+        ]
+      },
+      {
+        "heading": "Selecting Location",
+        "body": [
+          {
+            "element": "p",
+            "text": "Click on desired location and chart will update."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "IDF Curve",
+    "content": []
+  },
+  {
+    "name": "About the Data",
+    "content": [
+      {
+        "heading": "Data Source",
+        "body": [
+          {
+            "element": "p",
+            "text": "The wild, wonderful mind of Arthur DeGaetano."
+          }
+        ]
+      }
+    ]
+  }
+]

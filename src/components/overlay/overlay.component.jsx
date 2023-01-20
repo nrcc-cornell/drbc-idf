@@ -9,7 +9,6 @@ export default function Overlay({
   opacity,
   colors,
 }) {
-  console.log(colors);
   return (
     <Source type='vector' url={sourceUrl} id={name + '-colors'}>
       <Layer

@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders matches snapshot 1`] = `
+exports[`render matches snapshot 1`] = `
 Object {
   "asFragment": [Function],
   "baseElement": <body>
@@ -8,7 +8,53 @@ Object {
       <div
         class="nav-container"
       >
-        Nav
+        <div
+          class="MuiTabs-root css-1levrz3-MuiTabs-root"
+        >
+          <div
+            class="MuiTabs-scroller MuiTabs-fixed css-jpln7h-MuiTabs-scroller"
+            style="overflow: hidden; margin-bottom: 0px;"
+          >
+            <div
+              aria-label="tool navigation tabs"
+              class="MuiTabs-flexContainer css-heg063-MuiTabs-flexContainer"
+              role="tablist"
+            >
+              <button
+                aria-selected="true"
+                class="MuiButtonBase-root MuiTab-root MuiTab-textColorPrimary Mui-selected css-1q0ms9a-MuiButtonBase-root-MuiTab-root"
+                role="tab"
+                tabindex="0"
+                type="button"
+              >
+                Tab 1
+                <span
+                  class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                />
+              </button>
+              <button
+                aria-selected="false"
+                class="MuiButtonBase-root MuiTab-root MuiTab-textColorPrimary css-1q0ms9a-MuiButtonBase-root-MuiTab-root"
+                role="tab"
+                tabindex="-1"
+                type="button"
+              >
+                Tab 2
+                <span
+                  class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                />
+              </button>
+            </div>
+            <span
+              class="MuiTabs-indicator css-1aquho2-MuiTabs-indicator"
+              style="left: 0px; width: 0px;"
+            >
+              <span
+                class="MuiTabs-indicatorSpan"
+              />
+            </span>
+          </div>
+        </div>
       </div>
     </div>
   </body>,
@@ -16,7 +62,53 @@ Object {
     <div
       class="nav-container"
     >
-      Nav
+      <div
+        class="MuiTabs-root css-1levrz3-MuiTabs-root"
+      >
+        <div
+          class="MuiTabs-scroller MuiTabs-fixed css-jpln7h-MuiTabs-scroller"
+          style="overflow: hidden; margin-bottom: 0px;"
+        >
+          <div
+            aria-label="tool navigation tabs"
+            class="MuiTabs-flexContainer css-heg063-MuiTabs-flexContainer"
+            role="tablist"
+          >
+            <button
+              aria-selected="true"
+              class="MuiButtonBase-root MuiTab-root MuiTab-textColorPrimary Mui-selected css-1q0ms9a-MuiButtonBase-root-MuiTab-root"
+              role="tab"
+              tabindex="0"
+              type="button"
+            >
+              Tab 1
+              <span
+                class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+              />
+            </button>
+            <button
+              aria-selected="false"
+              class="MuiButtonBase-root MuiTab-root MuiTab-textColorPrimary css-1q0ms9a-MuiButtonBase-root-MuiTab-root"
+              role="tab"
+              tabindex="-1"
+              type="button"
+            >
+              Tab 2
+              <span
+                class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+              />
+            </button>
+          </div>
+          <span
+            class="MuiTabs-indicator css-1aquho2-MuiTabs-indicator"
+            style="left: 0px; width: 0px;"
+          >
+            <span
+              class="MuiTabs-indicatorSpan"
+            />
+          </span>
+        </div>
+      </div>
     </div>
   </div>,
   "debug": [Function],
