@@ -48,25 +48,16 @@ const calculateColors = (fileData, returnPeriod, rcp, timeFrame, matcher) => {
     { locVals: [], rawMin: 999, rawMax: -999 }
   );
 
-  console.log(rawMin, rawMax);
   const diff = Math.max(Math.abs(rawMin - 1), Math.abs(rawMax - 1));
   const min = Math.round((1 - diff) * 100) / 100;
   const max = Math.round((1 + diff) * 100) / 100;
-  console.log(diff, min, max);
 
   const rainbow = new Rainbow();
   rainbow.setSpectrum('#e2b533', '#1a7c00', '#002eff');
   rainbow.setNumberRange(min, max);
   let colors = ['match', ['get', matcher]];
 
-  console.log(locVals);
-  const tracker = [];
   locVals.forEach(([id, value], i) => {
-    if (tracker.includes(id)) {
-      console.log(id);
-    } else {
-      tracker.push(id);
-    }
     colors.push(
       matcher === 'fips_num' ? parseInt(id) : id || `${i}`,
       '#' + rainbow.colourAt(value)
@@ -74,8 +65,6 @@ const calculateColors = (fileData, returnPeriod, rcp, timeFrame, matcher) => {
   });
 
   colors.push('rgba(0,0,0,0)');
-  console.log(colors);
-
   return { colors, min, max };
 };
 
@@ -93,7 +82,8 @@ export const DataProvider = ({ children }) => {
   const [mapColors, setMapColors] = useState([
     'match',
     ['get', matcher],
-    '00000',
+    '1',
+    'rgba(0,0,0,0)',
     'rgba(0,0,0,0)',
   ]);
   const { selectBy, returnPeriod, rcp, timeFrame } = useContext(OptionsContext);
@@ -117,7 +107,8 @@ export const DataProvider = ({ children }) => {
       timeFrame,
       matcher
     );
-    setMapColors(colors);
+
+    if (colors.length > 3) setMapColors(colors);
     setLegendData({ min, max });
   }, [fileData, returnPeriod, rcp, timeFrame]);
 

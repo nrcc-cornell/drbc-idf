@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 
 import selectorsInfo from './selectorsInfo.json';
 
+const NAV_TABS = ['User Guide', 'IDF Curve', 'About the Data'];
+
 // Set up initial state of context
 export const OptionsContext = createContext({
   selectors: [],
@@ -15,6 +17,7 @@ export const OptionsProvider = ({ children }) => {
   const [returnPeriod, setReturnPeriod] = useState('2');
   const [rcp, setRcp] = useState('45');
   const [timeFrame, setTimeFrame] = useState('2020-2069');
+  const [navTab, setNavTab] = useState(0);
 
   const selectors = [
     {
@@ -49,6 +52,9 @@ export const OptionsProvider = ({ children }) => {
     returnPeriod,
     rcp,
     timeFrame,
+    navTab,
+    setNavTab,
+    navTabOptions: NAV_TABS,
   };
   return (
     <OptionsContext.Provider value={value}>{children}</OptionsContext.Provider>
