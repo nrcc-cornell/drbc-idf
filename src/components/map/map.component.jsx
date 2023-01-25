@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useRef } from 'react';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import mapboxgl from 'mapbox-gl';
 import Map from 'react-map-gl';
@@ -6,7 +6,6 @@ import Map from 'react-map-gl';
 import { MapContext } from '../../contexts/map.context';
 import { OptionsContext } from '../../contexts/options.context';
 import { DataContext } from '../../contexts/data.context';
-import overlayInfo from '../../contexts/overlayInfo.json';
 
 import Button from '../button/button.component';
 import Overlay from '../overlay/overlay.component';
@@ -32,9 +31,68 @@ export default function MapComponent() {
     handlePanning,
     resetViewState,
     isInitView,
+    overlayInfo,
+    selectedLocation,
   } = useContext(MapContext);
   const { selectBy } = useContext(OptionsContext);
   const { mapColors } = useContext(DataContext);
+  const hoveredId = useRef(null);
+
+  useEffect(() => {
+    if (mapRef.current) {
+      overlayInfo.forEach((overlay) => {
+        const layerId = overlay.name + '-fill';
+        const source = overlay.name + '-colors';
+        const sourceLayer = overlay.sourceLayer;
+
+        mapRef.current.on('mousemove', layerId, (e) => {
+          // Handle changing cursor
+          mapRef.current.getCanvas().style.cursor = 'pointer';
+
+          // Handle highlighting hovered polygon
+          if (e.features.length > 0) {
+            if (hoveredId.current !== null) {
+              mapRef.current.setFeatureState(
+                {
+                  source: source,
+                  id: hoveredId.current,
+                  sourceLayer: sourceLayer,
+                },
+                { hover: false }
+              );
+            }
+            hoveredId.current = e.features[0].id;
+            mapRef.current.setFeatureState(
+              {
+                source: source,
+                id: hoveredId.current,
+                sourceLayer: sourceLayer,
+              },
+              { hover: true }
+            );
+          }
+        });
+
+        mapRef.current.on('mouseleave', layerId, () => {
+          // Handle resetting cursor
+          mapRef.current.getCanvas().style.cursor = '';
+
+          // Handle cleaning up highlight
+          if (hoveredId.current !== null) {
+            mapRef.current.setFeatureState(
+              {
+                source: source,
+                id: hoveredId.current,
+                sourceLayer: sourceLayer,
+              },
+              { hover: false }
+            );
+          }
+          hoveredId.current = null;
+        });
+      });
+    }
+  }, [mapRef.current]);
 
   return (
     <div className='map-container'>
@@ -58,8 +116,11 @@ export default function MapComponent() {
           <Overlay
             key={i}
             {...overlay}
-            opacity={selectBy === overlay.name ? 0.5 : 0}
+            visibility={selectBy === overlay.name ? 'visible' : 'none'}
             colors={mapColors}
+            selectedId={
+              selectedLocation ? selectedLocation.id : selectedLocation
+            }
           />
         ))}
       </Map>

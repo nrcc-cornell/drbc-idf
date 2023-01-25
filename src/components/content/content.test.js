@@ -3,22 +3,34 @@ import { render, screen } from '@testing-library/react';
 import { OptionsContext } from '../../contexts/options.context';
 import Content from './content.component';
 
-const props1 = {
+const normalProps = {
   tabContent: [
     {
-      heading: 'Data Source',
-      body: [
-        {
-          element: 'p',
-          text: 'The wild, wonderful mind of Arthur DeGaetano.',
-        },
-      ],
+      sectionType: 'normal',
+      sectionContent: {
+        heading: 'Data Source',
+        body: [
+          {
+            element: 'p',
+            text: 'The wild, wonderful mind of Arthur DeGaetano.',
+          },
+        ],
+      },
     },
   ],
 };
 
-const props2 = {
+const blankProps = {
   tabContent: [],
+};
+
+const componentProps = {
+  tabContent: [
+    {
+      sectionType: 'component',
+      sectionContent: 'testing',
+    },
+  ],
 };
 
 const renderContent = (contentData) => {
@@ -30,11 +42,16 @@ const renderContent = (contentData) => {
 };
 
 it('renders matches snapshot', () => {
-  expect(renderContent(props1)).toMatchSnapshot();
+  expect(renderContent(normalProps)).toMatchSnapshot();
   expect(screen.queryByText('Data Source')).toBeTruthy();
 });
 
 it('handles blank content', () => {
-  expect(renderContent(props2)).toMatchSnapshot();
+  expect(renderContent(blankProps)).toMatchSnapshot();
   expect(screen.queryByText('Data Source')).toBeFalsy();
+});
+
+it('can render components', () => {
+  expect(renderContent(componentProps)).toMatchSnapshot();
+  expect(screen.queryByText('Rendered Test div')).toBeTruthy();
 });

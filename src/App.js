@@ -1,14 +1,18 @@
-import React from 'react';
+import React, { useContext } from 'react';
 
 import Content from './components/content/content.component';
 import Legend from './components/legend/legend.component';
 import MapComponent from './components/map/map.component';
 import Nav from './components/nav/nav.component';
 import OptionPanel from './components/option-panel/option-panel.component';
+import PrecipitationTable from './components/precipitation-table/precipitation-table.component';
 
 import './App.scss';
+import { OptionsContext } from './contexts/options.context';
 
 function App() {
+  const { navTab } = useContext(OptionsContext);
+
   return (
     <div className='drbc-layout-mock'>
       <div className='drbc-content-container-mock'>
@@ -39,6 +43,8 @@ function App() {
             </div>
           </div>
         </div>
+
+        {navTab === 1 && <PrecipitationTable />}
 
         <h1 className='drbc-footer-mock'>DRBC Footer Content</h1>
       </div>

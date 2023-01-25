@@ -4,10 +4,8 @@ import PropTypes from 'prop-types';
 import './button.styles.scss';
 
 const BUTTON_TYPE_CLASSES = {
-  inverted: 'inverted',
-  centeredSmall: 'centered small',
-  small: 'small',
   resetZoom: 'reset-zoom',
+  chartResetZoom: 'chart-reset-zoom',
 };
 
 export default function Button({ children, buttonType, ...otherProps }) {

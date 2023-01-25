@@ -1,6 +1,16 @@
-import React, { createContext, useState, useRef, useEffect } from 'react';
+import React, {
+  createContext,
+  useContext,
+  useState,
+  useRef,
+  useEffect,
+} from 'react';
 import PropTypes from 'prop-types';
 import bbox from '@turf/bbox';
+
+import { OptionsContext } from './options.context';
+
+import config from './config.json';
 
 // Bounding box used to set initial view
 const INIT_BOUNDS = [-76.89, 38.4, -73.74, 42.91];
@@ -24,6 +34,8 @@ export const MapContext = createContext({
   handlePanning: () => null,
   resetViewState: () => null,
   isInitView: true,
+  selectedLocation: null,
+  overlayInfo: [],
 });
 
 // Set up context provider
@@ -34,6 +46,8 @@ export const MapProvider = ({ children }) => {
   });
   const [initView, setInitView] = useState(null);
   const [isInitView, setIsInitView] = useState(true);
+  const [selectedLocation, setSelectedLocation] = useState(null);
+  const { selectByOptions } = useContext(OptionsContext);
 
   useEffect(() => {
     try {
@@ -50,15 +64,45 @@ export const MapProvider = ({ children }) => {
     }
   }, [viewState, initView]);
 
+  useEffect(() => {
+    if (mapRef.current) {
+      mapRef.current.on('render', afterChangeComplete);
+    }
+  }, [mapRef.current, selectByOptions]);
+
+  const afterChangeComplete = () => {
+    if (!mapRef.current.loaded() || !selectedLocation) return;
+
+    const feats = mapRef.current.queryRenderedFeatures(
+      mapRef.current.project([
+        selectedLocation.coords.lng,
+        selectedLocation.coords.lat,
+      ]),
+      {
+        layers: [selectByOptions.value + '-fill'],
+      }
+    );
+
+    setSelectedLocation({
+      ...selectedLocation,
+      id: feats.length ? feats[0].properties[selectByOptions.idInfo.key] : '',
+    });
+
+    mapRef.current.off('render', afterChangeComplete);
+  };
+
   // Tries to get new location information, stores it if successful, moves map to new location
   const handleMapClick = async (e) => {
     if (mapRef.current) {
       const feature = e.features[0];
       if (feature) {
+        setSelectedLocation({
+          coords: e.lngLat,
+          id: feature.properties[selectByOptions.idInfo.key],
+        });
+
         // calculate the bounding box of the feature
         const [minLng, minLat, maxLng, maxLat] = bbox(feature);
-
-        console.log(feature.properties);
 
         mapRef.current.fitBounds(
           [
@@ -120,6 +164,11 @@ export const MapProvider = ({ children }) => {
     handlePanning,
     resetViewState,
     isInitView,
+    selectedLocation,
+    overlayInfo: config.selectBy.options.map((opt) => ({
+      ...opt.overlayInfo,
+      idKey: opt.idInfo.key,
+    })),
   };
   return <MapContext.Provider value={value}>{children}</MapContext.Provider>;
 };

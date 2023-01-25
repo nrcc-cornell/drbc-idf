@@ -1,0 +1,15 @@
+.chart-container {
+  position: relative;
+}
+
+.no-data {
+  padding: 6px;
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  box-sizing: border-box;
+  font-style: italic;
+  color: rgb(120, 120, 120);
+}

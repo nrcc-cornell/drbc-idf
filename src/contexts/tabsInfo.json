@@ -3,40 +3,54 @@
     "name": "User Guide",
     "content": [
       {
-        "heading": "Choosing Options",
-        "body": [
-          {
-            "element": "p",
-            "text": "Click on desired option and map will update."
-          }
-        ]
+        "sectionType": "normal",
+        "sectionContent": {
+          "heading": "Choosing Options",
+          "body": [
+            {
+              "element": "p",
+              "text": "Click on desired option and map will update."
+            }
+          ]
+        }
       },
       {
-        "heading": "Selecting Location",
-        "body": [
-          {
-            "element": "p",
-            "text": "Click on desired location and chart will update."
-          }
-        ]
+        "sectionType": "normal",
+        "sectionContent": {
+          "heading": "Selecting Location",
+          "body": [
+            {
+              "element": "p",
+              "text": "Click on desired location and chart will update."
+            }
+          ]
+        }
       }
     ]
   },
   {
     "name": "IDF Curve",
-    "content": []
+    "content": [
+      {
+        "sectionType": "component",
+        "sectionContent": "highchart"
+      }
+    ]
   },
   {
     "name": "About the Data",
     "content": [
       {
-        "heading": "Data Source",
-        "body": [
-          {
-            "element": "p",
-            "text": "The wild, wonderful mind of Arthur DeGaetano."
-          }
-        ]
+        "sectionType": "normal",
+        "sectionContent": {
+          "heading": "Data Source",
+          "body": [
+            {
+              "element": "p",
+              "text": "The wild, wonderful mind of Arthur DeGaetano."
+            }
+          ]
+        }
       }
     ]
   }

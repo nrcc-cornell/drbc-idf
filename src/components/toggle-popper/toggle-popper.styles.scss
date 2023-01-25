@@ -1,0 +1,40 @@
+$width: 270px;
+$label-width: 58px;
+
+.toggles-popper-content {
+  background-color: white;
+  width: $width;
+  padding: 5px 0px 12px 0px;
+  border: 1px solid rgb(220, 220, 220);
+  text-align: center;
+
+  .toggles-popper-label {
+    font-size: 14px;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    margin-bottom: 5px;
+  }
+
+  .toggles {
+    display: flex;
+    justify-content: center;
+
+    .toggle-percent {
+      width: $label-width;
+      font-size: 12px;
+      position: relative;
+
+      &::after {
+        content: '';
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-width: 8px 4px 0 4px;
+        border-color: #bbbbbb transparent transparent transparent;
+        position: absolute;
+        top: 15px;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+    }
+  }
+}

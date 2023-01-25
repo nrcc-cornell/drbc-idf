@@ -6,8 +6,10 @@ export default function Overlay({
   name,
   sourceUrl,
   sourceLayer,
-  opacity,
+  idKey,
+  visibility,
   colors,
+  selectedId,
 }) {
   return (
     <Source type='vector' url={sourceUrl} id={name + '-colors'}>
@@ -15,9 +17,21 @@ export default function Overlay({
         id={name + '-fill'}
         type='fill'
         source-layer={sourceLayer}
+        layout={{
+          visibility: visibility,
+        }}
         paint={{
           'fill-color': colors,
-          'fill-opacity': opacity,
+          'fill-opacity': [
+            'case',
+            [
+              'any',
+              ['boolean', ['feature-state', 'hover'], false],
+              ['==', ['get', idKey], selectedId],
+            ],
+            0.75,
+            0.5,
+          ],
           'fill-outline-color': 'black',
         }}
         beforeId='basin-outline'
@@ -30,6 +44,8 @@ Overlay.propTypes = {
   name: PropTypes.string.isRequired,
   sourceUrl: PropTypes.string.isRequired,
   sourceLayer: PropTypes.string.isRequired,
-  opacity: PropTypes.number.isRequired,
+  idKey: PropTypes.string.isRequired,
+  visibility: PropTypes.string.isRequired,
   colors: PropTypes.array.isRequired,
+  selectedId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 };

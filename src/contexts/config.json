@@ -5,17 +5,44 @@
       {
         "value": "county",
         "ariaLabel": "select by county",
-        "text": "County"
+        "text": "County",
+        "idInfo": {
+          "key": "fips_num",
+          "isInt": true
+        },
+        "overlayInfo": {
+          "name": "county",
+          "sourceUrl": "mapbox://idfcurvetooladmin.dop9cna0",
+          "sourceLayer": "drbcounty-0gtu4n"
+        }
       },
       {
         "value": "muni",
         "ariaLabel": "select by municipality",
-        "text": "Municipality"
+        "text": "Municipality",
+        "idInfo": {
+          "key": "GNIS_ID",
+          "isInt": false
+        },
+        "overlayInfo": {
+          "name": "muni",
+          "sourceUrl": "mapbox://idfcurvetooladmin.municipalities",
+          "sourceLayer": "municipalities"
+        }
       },
       {
         "value": "huc12",
         "ariaLabel": "select by HUC",
-        "text": "HUC 12"
+        "text": "HUC 12",
+        "idInfo": {
+          "key": "huc12",
+          "isInt": false
+        },
+        "overlayInfo": {
+          "name": "huc12",
+          "sourceUrl": "mapbox://idfcurvetooladmin.ceaoyxa0",
+          "sourceLayer": "huc12_clipped-5ik5bx"
+        }
       }
     ]
   },

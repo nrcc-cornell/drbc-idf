@@ -1,53 +1,75 @@
 import React, { createContext, useState } from 'react';
 import PropTypes from 'prop-types';
 
-import selectorsInfo from './selectorsInfo.json';
+import config from './config.json';
 import tabsInfo from './tabsInfo.json';
+import togglesConfig from './togglesInfo.json';
 
 // Set up initial state of context
 export const OptionsContext = createContext({
   selectors: [],
   selectBy: {},
+  selectByOptions: {},
+  returnPeriod: '',
+  rcp: '',
+  timeFrame: '',
+  navTab: 0,
+  setNavTab: () => null,
+  navTabOptions: [],
+  tabContent: [],
+  togglesInfo: [],
 });
 
 // Set up context provider
 export const OptionsProvider = ({ children }) => {
-  const [selectBy, setSelectBy] = useState('county');
-  const [returnPeriod, setReturnPeriod] = useState('2');
-  const [rcp, setRcp] = useState('45');
-  const [timeFrame, setTimeFrame] = useState('2020-2069');
+  const [selectBy, setSelectBy] = useState(config.selectBy.options[0].value);
+  const [returnPeriod, setReturnPeriod] = useState(
+    config.returnPeriod.options[0].value
+  );
+  const [rcp, setRcp] = useState(config.rcp.options[0].value);
+  const [timeFrame, setTimeFrame] = useState(config.timeFrame.options[0].value);
   const [navTab, setNavTab] = useState(0);
+  const [togglesInfo, setTogglesInfo] = useState(togglesConfig);
 
   const selectors = [
     {
-      label: selectorsInfo['selectBy'].name,
+      label: config.selectBy.name,
       currentValue: selectBy,
       setFunction: setSelectBy,
-      optionsArray: selectorsInfo['selectBy'].options,
+      optionsArray: config.selectBy.options,
     },
     {
-      label: selectorsInfo['rcp'].name,
+      label: config.rcp.name,
       currentValue: rcp,
       setFunction: setRcp,
-      optionsArray: selectorsInfo['rcp'].options,
+      optionsArray: config.rcp.options,
     },
     {
-      label: selectorsInfo['timeFrame'].name,
+      label: config.timeFrame.name,
       currentValue: timeFrame,
       setFunction: setTimeFrame,
-      optionsArray: selectorsInfo['timeFrame'].options,
+      optionsArray: config.timeFrame.options,
     },
     {
-      label: selectorsInfo['returnPeriod'].name,
+      label: config.returnPeriod.name,
       currentValue: returnPeriod,
       setFunction: setReturnPeriod,
-      optionsArray: selectorsInfo['returnPeriod'].options,
+      optionsArray: config.returnPeriod.options,
     },
   ];
+
+  const updateToggles = (index, newValue) => {
+    const newToggleState = [...togglesInfo];
+    newToggleState[index].checked = newValue;
+    setTogglesInfo(newToggleState);
+  };
 
   const value = {
     selectors,
     selectBy,
+    selectByOptions: config.selectBy.options.find(
+      (opt) => opt.value === selectBy
+    ),
     returnPeriod,
     rcp,
     timeFrame,
@@ -55,6 +77,8 @@ export const OptionsProvider = ({ children }) => {
     setNavTab,
     navTabOptions: tabsInfo.map((tabInfo) => tabInfo.name),
     tabContent: tabsInfo[navTab].content,
+    togglesInfo,
+    updateToggles,
   };
   return (
     <OptionsContext.Provider value={value}>{children}</OptionsContext.Provider>
