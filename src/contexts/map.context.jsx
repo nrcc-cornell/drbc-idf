@@ -6,7 +6,12 @@ import React, {
   useEffect,
 } from 'react';
 import PropTypes from 'prop-types';
-import bbox from '@turf/bbox';
+import { centroid } from '@turf/turf';
+
+////////////////////////////////////////////////////
+// Can uninstall turf if this isnt needed!!!!!!!!
+// import bbox from '@turf/bbox';
+////////////////////////////////////////////////////
 
 import { OptionsContext } from './options.context';
 
@@ -101,19 +106,24 @@ export const MapProvider = ({ children }) => {
           id: feature.properties[selectByOptions.idInfo.key],
         });
 
-        // calculate the bounding box of the feature
-        const [minLng, minLat, maxLng, maxLat] = bbox(feature);
+        mapRef.current.flyTo({
+          center: centroid(feature).geometry.coordinates,
+          zoom: viewState.zoom && viewState.zoom > 7.5 ? viewState.zoom : 7.5,
+        });
 
-        mapRef.current.fitBounds(
-          [
-            [minLng, minLat],
-            [maxLng, maxLat],
-          ],
-          {
-            padding: { top: 20, bottom: 20, left: 20, right: 20 },
-            duration: 1000,
-          }
-        );
+        // // calculate the bounding box of the feature
+        // const [minLng, minLat, maxLng, maxLat] = bbox(feature);
+
+        // mapRef.current.fitBounds(
+        //   [
+        //     [minLng, minLat],
+        //     [maxLng, maxLat],
+        //   ],
+        //   {
+        //     padding: { top: 20, bottom: 20, left: 20, right: 20 },
+        //     duration: 1000,
+        //   }
+        // );
       }
     }
   };
