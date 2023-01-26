@@ -62,64 +62,67 @@ export default function Chart() {
     setIsZoomed(false);
   };
 
-  const series = [
-    {
-      id: 'projected',
-      name: 'Projected',
-      color: '#194186',
-      data: convertToLineCoords(chartData.projectedData.median),
-      zIndex: 6,
-    },
-    {
-      id: 'atlas14',
-      name: 'Atlas 14',
-      color: '#36845c',
-      data: convertToLineCoords(chartData.atlas14Data.median),
-      zIndex: 5,
-    },
-  ];
-  togglesInfo.forEach((toggle) => {
-    if (toggle.checked) {
-      let lower, upper, zIndex;
-      switch (toggle.index) {
-        case 0:
-          lower = chartData.atlas14Data['10'];
-          upper = chartData.atlas14Data['90'];
-          zIndex = 1;
-          break;
-        case 1:
-          lower = chartData.projectedData['25'];
-          upper = chartData.projectedData['75'];
-          zIndex = 4;
-          break;
-        case 2:
-          lower = chartData.projectedData['17'];
-          upper = chartData.projectedData['83'];
-          zIndex = 3;
-          break;
-        case 3:
-          lower = chartData.projectedData['10'];
-          upper = chartData.projectedData['90'];
-          zIndex = 2;
-          break;
+  let series = null;
+  if (chartData.projectedData) {
+    series = [
+      {
+        id: 'projected',
+        name: 'Projected',
+        color: '#194186',
+        data: convertToLineCoords(chartData.projectedData.median),
+        zIndex: 6,
+      },
+      {
+        id: 'atlas14',
+        name: 'Atlas 14',
+        color: '#36845c',
+        data: convertToLineCoords(chartData.atlas14Data.median),
+        zIndex: 5,
+      },
+    ];
+    togglesInfo.forEach((toggle) => {
+      if (toggle.checked) {
+        let lower, upper, zIndex;
+        switch (toggle.index) {
+          case 0:
+            lower = chartData.atlas14Data['10'];
+            upper = chartData.atlas14Data['90'];
+            zIndex = 1;
+            break;
+          case 1:
+            lower = chartData.projectedData['25'];
+            upper = chartData.projectedData['75'];
+            zIndex = 4;
+            break;
+          case 2:
+            lower = chartData.projectedData['17'];
+            upper = chartData.projectedData['83'];
+            zIndex = 3;
+            break;
+          case 3:
+            lower = chartData.projectedData['10'];
+            upper = chartData.projectedData['90'];
+            zIndex = 2;
+            break;
 
-        default:
-          lower = [];
-          upper = [];
-          zIndex = 0;
-          break;
+          default:
+            lower = [];
+            upper = [];
+            zIndex = 0;
+            break;
+        }
+
+        series.push({
+          name: toggle.name + ' Upper',
+          linkedTo: toggle.linkedTo,
+          type: 'arearange',
+          color: toggle.color,
+          data: convertToArearangeCoords(lower, upper),
+          zIndex,
+        });
       }
-
-      series.push({
-        name: toggle.name + ' Upper',
-        linkedTo: toggle.linkedTo,
-        type: 'arearange',
-        color: toggle.color,
-        data: convertToArearangeCoords(lower, upper),
-        zIndex,
-      });
-    }
-  });
+    });
+  }
 
   const chartOptions = {
     credits: {

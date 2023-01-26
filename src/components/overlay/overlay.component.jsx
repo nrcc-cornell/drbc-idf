@@ -6,13 +6,12 @@ export default function Overlay({
   name,
   sourceUrl,
   sourceLayer,
-  idKey,
   visibility,
   colors,
   selectedId,
 }) {
   return (
-    <Source type='vector' url={sourceUrl} id={name + '-colors'}>
+    <Source type='vector' url={sourceUrl} promoteId='id' id={name + '-colors'}>
       <Layer
         id={name + '-fill'}
         type='fill'
@@ -27,7 +26,7 @@ export default function Overlay({
             [
               'any',
               ['boolean', ['feature-state', 'hover'], false],
-              ['==', ['get', idKey], selectedId],
+              ['==', ['get', 'id'], selectedId],
             ],
             0.75,
             0.5,
@@ -44,7 +43,6 @@ Overlay.propTypes = {
   name: PropTypes.string.isRequired,
   sourceUrl: PropTypes.string.isRequired,
   sourceLayer: PropTypes.string.isRequired,
-  idKey: PropTypes.string.isRequired,
   visibility: PropTypes.string.isRequired,
   colors: PropTypes.array.isRequired,
   selectedId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),

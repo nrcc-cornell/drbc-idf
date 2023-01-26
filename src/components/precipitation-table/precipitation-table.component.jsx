@@ -40,7 +40,7 @@ export default function PrecipitationTable() {
   return (
     <div className='precip-table-container'>
       <TableContainer className='precip-table-content'>
-        <Table size='small' aria-label='a dense table'>
+        <Table size='small' aria-label='table of preciption projections'>
           <TableHead>
             <TableRow>
               <StyledTableCell></StyledTableCell>
@@ -80,7 +80,9 @@ export default function PrecipitationTable() {
                 </StyledTableCell>
                 {row.slice(1).map((value, j) => (
                   <StyledTableCell key={'cell' + j} align='center'>
-                    {(Math.round(value * 100) / 100).toFixed(2)}
+                    {value === null
+                      ? value
+                      : (Math.round(value * 100) / 100).toFixed(2)}
                   </StyledTableCell>
                 ))}
               </TableRow>

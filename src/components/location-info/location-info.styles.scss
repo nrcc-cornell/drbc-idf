@@ -1,0 +1,20 @@
+$margin: 3px;
+$width: calc(349px - (2 * $margin));
+
+.location-info-container {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  margin: $margin;
+  padding: 4px;
+  padding-bottom: 0px;
+  border: 1px solid rgb(220, 220, 220);
+  background-color: white;
+  width: $width;
+  box-sizing: border-box;
+  font-size: 12px;
+
+  .location-info-hovered {
+    height: 16px;
+  }
+}

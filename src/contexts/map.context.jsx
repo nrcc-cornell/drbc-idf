@@ -88,10 +88,19 @@ export const MapProvider = ({ children }) => {
       }
     );
 
-    setSelectedLocation({
-      ...selectedLocation,
-      id: feats.length ? feats[0].properties[selectByOptions.idInfo.key] : '',
-    });
+    if (feats.length) {
+      setSelectedLocation({
+        coords: selectedLocation.coords,
+        ...feats[0].properties,
+      });
+    } else {
+      setSelectedLocation({
+        coords: selectedLocation.coords,
+        name: '',
+        id: '',
+        state_abbr: '',
+      });
+    }
 
     mapRef.current.off('render', afterChangeComplete);
   };
@@ -103,12 +112,13 @@ export const MapProvider = ({ children }) => {
       if (feature) {
         setSelectedLocation({
           coords: e.lngLat,
-          id: feature.properties[selectByOptions.idInfo.key],
+          ...feature.properties,
         });
 
         mapRef.current.flyTo({
           center: centroid(feature).geometry.coordinates,
           zoom: viewState.zoom && viewState.zoom > 7.5 ? viewState.zoom : 7.5,
+          padding: { top: 50 },
         });
 
         // // calculate the bounding box of the feature
@@ -175,10 +185,7 @@ export const MapProvider = ({ children }) => {
     resetViewState,
     isInitView,
     selectedLocation,
-    overlayInfo: config.selectBy.options.map((opt) => ({
-      ...opt.overlayInfo,
-      idKey: opt.idInfo.key,
-    })),
+    overlayInfo: config.selectBy.options.map((opt) => opt.overlayInfo),
   };
   return <MapContext.Provider value={value}>{children}</MapContext.Provider>;
 };

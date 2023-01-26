@@ -7,8 +7,6 @@ import Rainbow from 'rainbowvis.js';
 import { OptionsContext } from './options.context';
 import { MapContext } from './map.context';
 
-import config from './config.json';
-
 const loadDataFile = (selectBy, setFunction) => {
   JSZipUtils.getBinaryContent(
     `${process.env.PUBLIC_URL}/data/${selectBy}_adjustments.zip`,
@@ -26,7 +24,7 @@ const loadDataFile = (selectBy, setFunction) => {
   );
 };
 
-const calculateColors = (fileData, returnPeriod, rcp, timeFrame, idInfo) => {
+const calculateColors = (fileData, returnPeriod, rcp, timeFrame) => {
   const { locVals, rawMin, rawMax } = fileData.reduce(
     (acc, locationObj) => {
       const id = locationObj.id;
@@ -58,13 +56,10 @@ const calculateColors = (fileData, returnPeriod, rcp, timeFrame, idInfo) => {
   const rainbow = new Rainbow();
   rainbow.setSpectrum('#e2b533', '#1a7c00', '#002eff');
   rainbow.setNumberRange(min, max);
-  let colors = ['match', ['get', idInfo.key]];
+  let colors = ['match', ['get', 'id']];
 
   locVals.forEach(([id, value], i) => {
-    colors.push(
-      idInfo.isInt ? parseInt(id) : id || `${i}`,
-      '#' + rainbow.colourAt(value)
-    );
+    colors.push(id || `${i}`, '#' + rainbow.colourAt(value));
   });
 
   colors.push('rgba(0,0,0,0)');
@@ -130,6 +125,7 @@ const updateAtlas14Data = async (coords, setChartData) => {
   setChartData(atlas14Data);
 };
 
+const percentileOrder = ['10', '17', '25', 'median', '75', '83', '90'];
 const calculateProjectedData = (
   atlas14Data,
   fileData,
@@ -152,7 +148,6 @@ const calculateProjectedData = (
       adjustmentData.nearest_gridpoint.drb.data[rcp][timeFrame][returnPeriod];
   }
 
-  const percentileOrder = ['10', '17', '25', 'median', '75', '83', '90'];
   const atlas14Median = atlas14Data[returnPeriod].median;
   return {
     newAdjustments: adjustments,
@@ -255,6 +250,7 @@ export const DataContext = createContext({
   lastDurationHovered: null,
   setLastDurationHovered: () => null,
   adjustments: null,
+  percentileOrder: [],
 });
 
 // Set up context provider
@@ -267,7 +263,7 @@ export const DataProvider = ({ children }) => {
   const [adjustments, setAdjustments] = useState(null);
   const [mapColors, setMapColors] = useState([
     'match',
-    ['get', config.selectBy.options[0].idInfo.key],
+    ['get', 'id'],
     '1',
     'rgba(0,0,0,0)',
     'rgba(0,0,0,0)',
@@ -286,8 +282,7 @@ export const DataProvider = ({ children }) => {
       fileData,
       returnPeriod,
       rcp,
-      timeFrame,
-      selectByOptions.idInfo
+      timeFrame
     );
 
     if (colors.length > 3) setMapColors(colors);
@@ -328,6 +323,7 @@ export const DataProvider = ({ children }) => {
     setLastDurationHovered,
     tableData,
     adjustments,
+    percentileOrder,
   };
   return <DataContext.Provider value={value}>{children}</DataContext.Provider>;
 };

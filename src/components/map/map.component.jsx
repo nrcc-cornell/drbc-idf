@@ -1,7 +1,7 @@
-import React, { useContext, useEffect, useRef } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import mapboxgl from 'mapbox-gl';
-import Map from 'react-map-gl';
+import Map, { Marker } from 'react-map-gl';
 
 import { MapContext } from '../../contexts/map.context';
 import { OptionsContext } from '../../contexts/options.context';
@@ -9,6 +9,7 @@ import { DataContext } from '../../contexts/data.context';
 
 import Button from '../button/button.component';
 import Overlay from '../overlay/overlay.component';
+import LocationInfo from '../location-info/location-info.component';
 
 import './map.styles.scss';
 
@@ -36,6 +37,7 @@ export default function MapComponent() {
   } = useContext(MapContext);
   const { selectBy } = useContext(OptionsContext);
   const { mapColors } = useContext(DataContext);
+  const [hovered, setHovered] = useState(null);
   const hoveredId = useRef(null);
 
   useEffect(() => {
@@ -62,6 +64,7 @@ export default function MapComponent() {
               );
             }
             hoveredId.current = e.features[0].id;
+            setHovered(e.features[0].properties);
             mapRef.current.setFeatureState(
               {
                 source: source,
@@ -89,6 +92,7 @@ export default function MapComponent() {
             );
           }
           hoveredId.current = null;
+          setHovered(null);
         });
       });
     }
@@ -123,7 +127,17 @@ export default function MapComponent() {
             }
           />
         ))}
+
+        {selectedLocation && (
+          <Marker
+            longitude={selectedLocation.coords.lng}
+            latitude={selectedLocation.coords.lat}
+            color='#b20e0e'
+          ></Marker>
+        )}
       </Map>
+
+      <LocationInfo hovered={hovered} />
 
       {!isInitView && (
         <div className='reset-zoom-button'>
