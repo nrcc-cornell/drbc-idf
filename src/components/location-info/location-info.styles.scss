@@ -1,20 +1,30 @@
-$margin: 3px;
-$width: calc(349px - (2 * $margin));
+$border: 1px solid rgb(220, 220, 220);
 
 .location-info-container {
   position: absolute;
-  top: 0px;
+  bottom: 0px;
   left: 0px;
-  margin: $margin;
-  padding: 4px;
   padding-bottom: 0px;
-  border: 1px solid rgb(220, 220, 220);
+  border-top: $border;
   background-color: white;
-  width: $width;
+  width: 100%;
   box-sizing: border-box;
   font-size: 12px;
 
   .location-info-hovered {
-    height: 16px;
+    padding: 4px;
+    border-bottom: $border;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+
+    .hovered-type {
+      white-space: nowrap;
+    }
+
+    .hovered-name {
+      text-align: center;
+      width: 100%;
+    }
   }
 }

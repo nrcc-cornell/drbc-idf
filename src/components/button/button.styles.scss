@@ -14,34 +14,37 @@
   cursor: pointer;
   display: flex;
   justify-content: center;
-  border: 1px solid black;
   white-space: nowrap;
-
-  @media (hover: hover) {
-    &:hover {
-      background-color: white;
-      color: black;
-    }
-  }
 
   &.reset-zoom {
     position: absolute;
-    bottom: 3px;
+    top: 3px;
     left: 50%;
     transform: translateX(-50%);
     font-size: 12px;
     height: 32px;
     line-height: 30px;
     padding: 0px 15px;
+    background-color: #36845c;
+
+    &:hover {
+      background-color: #3da36e;
+    }
   }
 
-  &.chart-reset-zoom {
-    font-size: 8px;
-    height: 20px;
-    line-height: 19px;
-    padding: 0px 4px;
-    position: absolute;
-    bottom: 3px;
-    left: 3px;
+  &.export {
+    background-color: #194186;
+    border: none;
+    align-items: center;
+    gap: 6px;
+    line-height: 14px;
+    font-size: 12px;
+    padding: 0px 8px;
+    border-radius: 6px;
+    height: 40px;
+
+    &:hover {
+      background-color: #245ab8;
+    }
   }
 }

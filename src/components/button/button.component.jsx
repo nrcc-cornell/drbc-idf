@@ -5,7 +5,8 @@ import './button.styles.scss';
 
 const BUTTON_TYPE_CLASSES = {
   resetZoom: 'reset-zoom',
-  chartResetZoom: 'chart-reset-zoom',
+  // chartResetZoom: 'chart-reset-zoom',
+  export: 'export',
 };
 
 export default function Button({ children, buttonType, ...otherProps }) {

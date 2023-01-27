@@ -9,6 +9,7 @@ import { OptionsContext } from '../../contexts/options.context';
 import { DataContext } from '../../contexts/data.context';
 
 import './location-info.styles.scss';
+import { PdfContext } from '../../contexts/pdf.context';
 
 const StyledTableCell = styled(TableCell)({
   [`&.${tableCellClasses.head}`]: {
@@ -27,26 +28,26 @@ const StyledTableCell = styled(TableCell)({
   },
 });
 
-const constructType = (type) => {
-  return type.charAt(0).toUpperCase() + type.slice(1) + ':';
-};
-
-const constructName = (type, name, state) => {
-  return `${constructType(type)} ${name}, ${state}`;
+const capitalize = (word) => {
+  return word.charAt(0).toUpperCase() + word.slice(1);
 };
 
 export default function LocationInfo({ hovered }) {
   const { selectedLocation } = useContext(MapContext);
   const { selectBy } = useContext(OptionsContext);
   const { adjustments, percentileOrder } = useContext(DataContext);
+  const { changeFactorRef } = useContext(PdfContext);
 
-  console.log(selectedLocation);
-
-  const hoveredContent = `Hovered ${
-    hovered
-      ? constructName(selectBy, hovered.name, hovered.state_abbr)
-      : constructType(selectBy)
-  }`;
+  const hoveredContent = hovered ? (
+    <div className='location-info-hovered'>
+      <div className='hovered-type'>Hovered {capitalize(selectBy)}:</div>
+      <div className='hovered-name'>
+        {hovered.name}, {hovered.state_abbr}
+      </div>
+    </div>
+  ) : (
+    ''
+  );
 
   const selectedContent =
     selectedLocation && selectedLocation.id ? (
@@ -54,6 +55,7 @@ export default function LocationInfo({ hovered }) {
         className='selected-change-factors'
         size='small'
         aria-label='table of change factors for the selected location'
+        ref={changeFactorRef}
       >
         <TableHead>
           <TableRow>
@@ -68,12 +70,8 @@ export default function LocationInfo({ hovered }) {
                 },
               }}
             >
-              Change factors by Percentile for{' '}
-              {constructName(
-                selectBy,
-                selectedLocation.name,
-                selectedLocation.state_abbr
-              )}
+              Change factors by Percentile for {capitalize(selectBy)}:{' '}
+              {selectedLocation.name}, {selectedLocation.state_abbr}
             </StyledTableCell>
           </TableRow>
           <TableRow>
@@ -108,7 +106,7 @@ export default function LocationInfo({ hovered }) {
   if (hovered || selectedLocation) {
     return (
       <div className='location-info-container'>
-        <div className='location-info-hovered'>{hoveredContent}</div>
+        {hoveredContent}
         <div className='location-info-selected'>{selectedContent}</div>
       </div>
     );

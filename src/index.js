@@ -7,6 +7,7 @@ import reportWebVitals from './reportWebVitals';
 import { MapProvider } from './contexts/map.context';
 import { OptionsProvider } from './contexts/options.context';
 import { DataProvider } from './contexts/data.context';
+import { PdfProvider } from './contexts/pdf.context';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -14,7 +15,9 @@ root.render(
     <OptionsProvider>
       <MapProvider>
         <DataProvider>
-          <App />
+          <PdfProvider>
+            <App />
+          </PdfProvider>
         </DataProvider>
       </MapProvider>
     </OptionsProvider>

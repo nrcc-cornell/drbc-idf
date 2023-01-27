@@ -118,7 +118,7 @@ export const MapProvider = ({ children }) => {
         mapRef.current.flyTo({
           center: centroid(feature).geometry.coordinates,
           zoom: viewState.zoom && viewState.zoom > 7.5 ? viewState.zoom : 7.5,
-          padding: { top: 50 },
+          padding: { bottom: 50 },
         });
 
         // // calculate the bounding box of the feature

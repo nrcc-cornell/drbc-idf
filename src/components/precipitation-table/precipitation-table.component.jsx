@@ -12,6 +12,7 @@ import { styled } from '@mui/material/styles';
 import { DataContext } from '../../contexts/data.context';
 
 import './precipitation-table.styles.scss';
+import { PdfContext } from '../../contexts/pdf.context';
 
 const StyledTableCell = styled(TableCell)({
   [`&.${tableCellClasses.head}`]: {
@@ -29,6 +30,7 @@ const StyledTableCell = styled(TableCell)({
 });
 
 export default function PrecipitationTable() {
+  const { precipDataRef } = useContext(PdfContext);
   const { tableData } = useContext(DataContext);
   if (!tableData) return '';
 
@@ -39,15 +41,21 @@ export default function PrecipitationTable() {
 
   return (
     <div className='precip-table-container'>
-      <TableContainer className='precip-table-content'>
+      <TableContainer className='precip-table-content' ref={precipDataRef}>
         <Table size='small' aria-label='table of preciption projections'>
           <TableHead>
             <TableRow>
-              <StyledTableCell></StyledTableCell>
+              <StyledTableCell
+                sx={{ '&:first-of-type': { borderRight: 0 } }}
+              ></StyledTableCell>
               <StyledTableCell align='center' colSpan={numProjectedCols}>
                 Projected Precipitation (inch)
               </StyledTableCell>
-              <StyledTableCell align='center' colSpan={numAtlas14Cols}>
+              <StyledTableCell
+                align='center'
+                colSpan={numAtlas14Cols}
+                sx={{ '&:last-child': { borderRight: 0 } }}
+              >
                 Atlas 14 Precipitation (inch)
               </StyledTableCell>
             </TableRow>
@@ -56,6 +64,7 @@ export default function PrecipitationTable() {
                 <StyledTableCell
                   key={'header' + i}
                   align={i === 0 ? 'left' : 'center'}
+                  sx={{ '&:last-child': { borderRight: 0 } }}
                 >
                   {colName}
                 </StyledTableCell>

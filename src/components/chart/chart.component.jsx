@@ -1,4 +1,4 @@
-import React, { useContext, useState, useRef } from 'react';
+import React, { useContext } from 'react';
 
 import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
@@ -11,13 +11,15 @@ accessibility(Highcharts);
 highchartsMore(Highcharts);
 // exporting(Highcharts);
 
+import CsvDownloadButton from '../csv-download-button/csv-download-button.component';
+import PdfDownloadButton from '../pdf-download-button/pdf-download-button.component';
+import CiToggles from '../ci-toggles/ci-toggles.components';
+
 import { DataContext } from '../../contexts/data.context';
 import { OptionsContext } from '../../contexts/options.context';
 
-import Button from '../button/button.component';
-
 import './chart.styles.scss';
-import CiToggles from '../ci-toggles/ci-toggles.components';
+import { PdfContext } from '../../contexts/pdf.context';
 
 const axesColor = 'rgb(150,150,150)';
 const axesTextColor = 'rgb(100,100,100)';
@@ -47,8 +49,7 @@ const convertToArearangeCoords = (lower, upper) => {
 };
 
 export default function Chart() {
-  const [isZoomed, setIsZoomed] = useState(false);
-  const chartRef = useRef(null);
+  const { chartRef } = useContext(PdfContext);
   const { chartData, lastDurationHovered, setLastDurationHovered } =
     useContext(DataContext);
   const { rcp, returnPeriod, timeFrame, togglesInfo } =
@@ -56,11 +57,6 @@ export default function Chart() {
 
   if (!chartData)
     return <div className='no-data'>Please select a location to see data.</div>;
-
-  const handleResetZoom = () => {
-    chartRef.current.chart.zoomOut();
-    setIsZoomed(false);
-  };
 
   let series = null;
   if (chartData.projectedData) {
@@ -199,9 +195,6 @@ export default function Chart() {
       y: -90,
     },
     xAxis: {
-      events: {
-        setExtremes: () => setIsZoomed(true),
-      },
       endOnTick: true,
       startOnTick: true,
       tickPositions: xLabels.map((arr) => arr[1]),
@@ -278,19 +271,18 @@ export default function Chart() {
 
   return (
     <div className='chart-container'>
-      <CiToggles />
-
       <HighchartsReact
         ref={chartRef}
         highcharts={Highcharts}
         options={chartOptions}
       />
 
-      {isZoomed && (
-        <Button onClick={handleResetZoom} buttonType='chartResetZoom'>
-          Reset Zoom
-        </Button>
-      )}
+      <div className='chart-buttons-container'>
+        <CsvDownloadButton />
+        <PdfDownloadButton />
+      </div>
+
+      <CiToggles />
     </div>
   );
 }

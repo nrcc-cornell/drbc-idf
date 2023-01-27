@@ -1,7 +1,8 @@
 import React, { useContext, useEffect, useRef, useState } from 'react';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import mapboxgl from 'mapbox-gl';
-import Map, { Marker } from 'react-map-gl';
+import Map, { Marker, AttributionControl } from 'react-map-gl';
+import InfoIcon from '@mui/icons-material/Info';
 
 import { MapContext } from '../../contexts/map.context';
 import { OptionsContext } from '../../contexts/options.context';
@@ -110,6 +111,7 @@ export default function MapComponent() {
         touchPitch={false}
         doubleClickZoom={false}
         attributionControl={false}
+        logoPosition='top-left'
         onMove={(evt) => handlePanning(evt.viewState)}
         onClick={handleMapClick}
         onLoad={handleLoad}
@@ -135,6 +137,10 @@ export default function MapComponent() {
             color='#b20e0e'
           ></Marker>
         )}
+
+        <AttributionControl position='top-right' compact={true}>
+          {InfoIcon}
+        </AttributionControl>
       </Map>
 
       <LocationInfo hovered={hovered} />

@@ -6,10 +6,13 @@
   "dependencies": {
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
+    "@mui/icons-material": "^5.11.0",
     "@mui/material": "^5.11.4",
     "@turf/turf": "^6.5.0",
     "highcharts": "^10.3.2",
     "highcharts-react-official": "^3.1.0",
+    "html2canvas": "^1.4.1",
+    "jspdf": "^2.5.1",
     "jszip": "^3.10.1",
     "jszip-utils": "^0.1.0",
     "mapbox-gl": "^2.12.0",

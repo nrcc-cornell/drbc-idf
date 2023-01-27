@@ -1,5 +1,14 @@
 .chart-container {
   position: relative;
+
+  .chart-buttons-container {
+    position: absolute;
+    bottom: 3px;
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    left: 3px;
+  }
 }
 
 .no-data {
