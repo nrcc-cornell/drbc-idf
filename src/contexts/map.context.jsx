@@ -52,7 +52,7 @@ export const MapProvider = ({ children }) => {
   const [initView, setInitView] = useState(null);
   const [isInitView, setIsInitView] = useState(true);
   const [selectedLocation, setSelectedLocation] = useState(null);
-  const { selectByOptions } = useContext(OptionsContext);
+  const { selectByOptions, setNavTab } = useContext(OptionsContext);
 
   useEffect(() => {
     try {
@@ -120,6 +120,8 @@ export const MapProvider = ({ children }) => {
           zoom: viewState.zoom && viewState.zoom > 7.5 ? viewState.zoom : 7.5,
           padding: { bottom: 50 },
         });
+
+        setNavTab(1);
 
         // // calculate the bounding box of the feature
         // const [minLng, minLat, maxLng, maxLat] = bbox(feature);

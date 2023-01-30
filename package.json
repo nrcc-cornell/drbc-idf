@@ -16,7 +16,6 @@
     "jszip": "^3.10.1",
     "jszip-utils": "^0.1.0",
     "mapbox-gl": "^2.12.0",
-    "rainbowvis.js": "^1.1.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-map-gl": "^7.0.21",

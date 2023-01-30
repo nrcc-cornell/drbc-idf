@@ -1,5 +1,8 @@
-$bar-width: calc(100% - 50px);
-$label-width: calc($bar-width + 14px);
+$content-padding: 50px;
+$content-width: calc(100% - $content-padding);
+$bar-offset: 6px;
+$bar-width: calc($content-width - $bar-offset);
+$labels-width: calc($content-width + 14px);
 
 .legend-container {
   display: flex;
@@ -8,24 +11,32 @@ $label-width: calc($bar-width + 14px);
 
   .legend {
     width: 100%;
+    position: relative;
 
-    .legend-colors {
+    .legend-color-squares {
+      display: flex;
       height: 15px;
       width: $bar-width;
       margin: 0 auto;
       border-top: 1px solid rgb(120, 120, 120);
       border-bottom: 1px solid rgb(120, 120, 120);
-      background: rgb(226, 181, 51);
-      background: linear-gradient(
-        90deg,
-        rgba(226, 181, 51, 1) 0%,
-        rgba(26, 124, 0, 1) 50%,
-        rgba(0, 46, 255, 1) 100%
-      );
+
+      .legend-color-square {
+        height: 15px;
+        flex-grow: 1;
+        opacity: 0.6;
+      }
+    }
+
+    .legend-ticks {
       display: flex;
       justify-content: space-between;
+      width: $bar-width;
+      position: absolute;
+      left: calc(($content-padding + $bar-offset) / 2);
+      bottom: -3px;
 
-      .label-tick {
+      .legend-tick {
         height: 19px;
         width: 1px;
         background-color: black;
@@ -37,7 +48,7 @@ $label-width: calc($bar-width + 14px);
     .legend-labels {
       display: flex;
       justify-content: space-between;
-      width: $label-width;
+      width: $labels-width;
       margin: 0 auto;
       font-size: 11px;
       margin-bottom: 2px;

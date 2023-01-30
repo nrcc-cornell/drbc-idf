@@ -28,10 +28,19 @@ export default function Overlay({
               ['boolean', ['feature-state', 'hover'], false],
               ['==', ['get', 'id'], selectedId],
             ],
-            0.75,
-            0.5,
+            0.7,
+            0.6,
           ],
-          'fill-outline-color': 'black',
+          'fill-outline-color': [
+            'case',
+            [
+              'any',
+              ['boolean', ['feature-state', 'hover'], false],
+              ['==', ['get', 'id'], selectedId],
+            ],
+            'rgb(0,0,0)',
+            'rgb(80,80,80)',
+          ],
         }}
         beforeId='basin-outline'
       />

@@ -2,10 +2,11 @@ import React, { createContext, useState, useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
 import JSZip from 'jszip';
 import JSZipUtils from 'jszip-utils';
-import Rainbow from 'rainbowvis.js';
 
 import { OptionsContext } from './options.context';
 import { MapContext } from './map.context';
+
+import legendColors from './legendColors.json';
 
 const loadDataFile = (selectBy, setFunction) => {
   JSZipUtils.getBinaryContent(
@@ -24,46 +25,43 @@ const loadDataFile = (selectBy, setFunction) => {
   );
 };
 
-const calculateColors = (fileData, returnPeriod, rcp, timeFrame) => {
-  const { locVals, rawMin, rawMax } = fileData.reduce(
-    (acc, locationObj) => {
-      const id = locationObj.id;
-      let value;
-      try {
-        value =
-          locationObj.nearest_gridpoint.nj.data[rcp][timeFrame][
-            returnPeriod
-          ][3];
-      } catch {
-        value =
-          locationObj.nearest_gridpoint.drb.data[rcp][timeFrame][
-            returnPeriod
-          ][3];
-      }
+const valueToColor = (value, legendColors) => {
+  for (let i = 0; i < legendColors.length; i++) {
+    let threshold, color;
+    [threshold, color] = legendColors[i];
+    if (value < threshold) return color;
+  }
+  return 'black';
+};
 
-      if (value < acc.rawMin) acc.rawMin = value;
-      if (value > acc.rawMax) acc.rawMax = value;
-      acc.locVals.push([id, value]);
-      return acc;
-    },
-    { locVals: [], rawMin: 999, rawMax: -999 }
-  );
+const calculateColors = (
+  fileData,
+  returnPeriod,
+  rcp,
+  timeFrame,
+  legendColors
+) => {
+  const locVals = fileData.map((locationObj) => {
+    const id = locationObj.id;
+    let value;
+    try {
+      value =
+        locationObj.nearest_gridpoint.nj.data[rcp][timeFrame][returnPeriod][3];
+    } catch {
+      value =
+        locationObj.nearest_gridpoint.drb.data[rcp][timeFrame][returnPeriod][3];
+    }
 
-  const diff = Math.max(Math.abs(rawMin - 1), Math.abs(rawMax - 1));
-  const min = Math.round((1 - diff) * 100) / 100;
-  const max = Math.round((1 + diff) * 100) / 100;
-
-  const rainbow = new Rainbow();
-  rainbow.setSpectrum('#e2b533', '#1a7c00', '#002eff');
-  rainbow.setNumberRange(min, max);
+    return [id, value];
+  });
   let colors = ['match', ['get', 'id']];
 
   locVals.forEach(([id, value], i) => {
-    colors.push(id || `${i}`, '#' + rainbow.colourAt(value));
+    colors.push(id || `${i}`, valueToColor(value, legendColors));
   });
 
   colors.push('rgba(0,0,0,0)');
-  return { colors, min, max };
+  return colors;
 };
 
 const convertData = (rawData, returnPeriodOrder) => {
@@ -251,12 +249,12 @@ export const DataContext = createContext({
   setLastDurationHovered: () => null,
   adjustments: null,
   percentileOrder: [],
+  legendColors: [],
 });
 
 // Set up context provider
 export const DataProvider = ({ children }) => {
   const [fileData, setFileData] = useState([]);
-  const [legendData, setLegendData] = useState({ min: 0, max: 0 });
   const [atlas14Data, setAtlas14Data] = useState(null);
   const [chartData, setChartData] = useState(null);
   const [tableData, setTableData] = useState(null);
@@ -278,15 +276,15 @@ export const DataProvider = ({ children }) => {
   }, [selectByOptions]);
 
   useEffect(() => {
-    const { colors, min, max } = calculateColors(
+    const colors = calculateColors(
       fileData,
       returnPeriod,
       rcp,
-      timeFrame
+      timeFrame,
+      legendColors
     );
 
     if (colors.length > 3) setMapColors(colors);
-    setLegendData({ min, max });
   }, [fileData, returnPeriod, rcp, timeFrame]);
 
   useEffect(() => {
@@ -317,13 +315,13 @@ export const DataProvider = ({ children }) => {
 
   const value = {
     mapColors,
-    legendData,
     chartData,
     lastDurationHovered,
     setLastDurationHovered,
     tableData,
     adjustments,
     percentileOrder,
+    legendColors,
   };
   return <DataContext.Provider value={value}>{children}</DataContext.Provider>;
 };
