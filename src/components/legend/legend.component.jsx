@@ -7,20 +7,27 @@ import './legend.styles.scss';
 export default function Legend() {
   const { legendColors } = useContext(DataContext);
 
-  const ticks = [<div key={0.95} className='legend-tick' />];
-  const labels = [
-    <div key={0.95} className='legend-label'>
-      {0.95}
-    </div>,
-  ];
+  const firstBinLow = legendColors[0][0] - 0.02;
+  const ticks = [<div key={firstBinLow} className='legend-tick short-tick' />];
+  const labels = [];
   const colorSquares = [];
   legendColors.forEach(([value, color]) => {
-    ticks.push(<div key={value} className='legend-tick' />);
-    labels.push(
-      <div key={value} className='legend-label'>
-        {value.toFixed(2)}
-      </div>
+    const roundedValue = (value + 0.03).toFixed(2);
+    const isEven = roundedValue.charAt(3) === '0';
+    ticks.push(
+      <div
+        key={value}
+        className={`legend-tick ${isEven ? 'long-tick' : 'short-tick'}`}
+      />
     );
+
+    if (isEven) {
+      labels.push(
+        <div key={value} className={'legend-label'}>
+          {roundedValue}
+        </div>
+      );
+    }
     colorSquares.push(
       <div
         key={value}

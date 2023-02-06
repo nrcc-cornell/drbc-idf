@@ -34,6 +34,27 @@ const valueToColor = (value, legendColors) => {
   return 'black';
 };
 
+const getNearest = (locationObj) => {
+  let value;
+  if (
+    locationObj.nearest_gridpoint.nj.distance <=
+    locationObj.nearest_gridpoint.drb.distance
+  ) {
+    try {
+      value = locationObj.nearest_gridpoint.nj.data;
+    } catch {
+      value = locationObj.nearest_gridpoint.drb.data;
+    }
+  } else {
+    try {
+      value = locationObj.nearest_gridpoint.drb.data;
+    } catch {
+      value = locationObj.nearest_gridpoint.nj.data;
+    }
+  }
+  return value;
+};
+
 const calculateColors = (
   fileData,
   returnPeriod,
@@ -43,16 +64,8 @@ const calculateColors = (
 ) => {
   const locVals = fileData.map((locationObj) => {
     const id = locationObj.id;
-    let value;
-    try {
-      value =
-        locationObj.nearest_gridpoint.nj.data[rcp][timeFrame][returnPeriod][3];
-    } catch {
-      value =
-        locationObj.nearest_gridpoint.drb.data[rcp][timeFrame][returnPeriod][3];
-    }
-
-    return [id, value];
+    const value = getNearest(locationObj);
+    return [id, value[rcp][timeFrame][returnPeriod][3]];
   });
   let colors = ['match', ['get', 'id']];
 
@@ -132,21 +145,14 @@ const calculateProjectedData = (
   timeFrame,
   selectedLocation
 ) => {
-  const adjustmentData = fileData.find((loc) => loc.id === selectedLocation.id);
-  if (!adjustmentData) {
+  const locationObj = fileData.find((loc) => loc.id === selectedLocation.id);
+  if (!locationObj) {
     return { newAdjustments: null, projectedData: null };
   }
 
-  let adjustments;
-  try {
-    adjustments =
-      adjustmentData.nearest_gridpoint.nj.data[rcp][timeFrame][returnPeriod];
-  } catch {
-    adjustments =
-      adjustmentData.nearest_gridpoint.drb.data[rcp][timeFrame][returnPeriod];
-  }
-
+  const adjustments = getNearest(locationObj)[rcp][timeFrame][returnPeriod];
   const atlas14Median = atlas14Data[returnPeriod].median;
+
   return {
     newAdjustments: adjustments,
     projectedData: atlas14Median.reduce(

@@ -2,7 +2,7 @@ $content-padding: 50px;
 $content-width: calc(100% - $content-padding);
 $bar-offset: 6px;
 $bar-width: calc($content-width - $bar-offset);
-$labels-width: calc($content-width + 14px);
+$labels-width: calc($content-width - 27px);
 
 .legend-container {
   display: flex;
@@ -37,11 +37,19 @@ $labels-width: calc($content-width + 14px);
       bottom: -3px;
 
       .legend-tick {
-        height: 19px;
         width: 1px;
         background-color: black;
         position: relative;
-        bottom: 4px;
+
+        &.long-tick {
+          height: 20px;
+          bottom: 3px;
+        }
+
+        &.short-tick {
+          height: 17px;
+          bottom: 0px;
+        }
       }
     }
 
@@ -50,8 +58,9 @@ $labels-width: calc($content-width + 14px);
       justify-content: space-between;
       width: $labels-width;
       margin: 0 auto;
-      font-size: 11px;
       margin-bottom: 2px;
+      padding-left: 3px;
+      font-size: 11px;
     }
   }
 }
