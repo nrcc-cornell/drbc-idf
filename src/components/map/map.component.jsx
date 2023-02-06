@@ -16,7 +16,7 @@ import './map.styles.scss';
 
 // Set token for mapbox API
 mapboxgl.accessToken =
-  'pk.eyJ1IjoiaWRmY3VydmV0b29sYWRtaW4iLCJhIjoiY2t2NzFiZXRmMWt0eDJvcDZzczBmMzRrYSJ9.U0DXUV08p4g3NsJWyb7DaQ';
+  'pk.eyJ1IjoiaWRmY3VydmV0b29sYWRtaW4iLCJhIjoiY2xkdGE0M3hpMDhpYzNxcGM1dm9yYjk5YyJ9.i1-mSRRpL-fw0mUBY4o_6A';
 
 //// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
