@@ -62,11 +62,14 @@ const calculateColors = (
   timeFrame,
   legendColors
 ) => {
-  const locVals = fileData.map((locationObj) => {
+  const locVals = fileData.reduce((acc, locationObj) => {
     const id = locationObj.id;
     const value = getNearest(locationObj);
-    return [id, value[rcp][timeFrame][returnPeriod][3]];
-  });
+    if (value[rcp][timeFrame]) {
+      acc.push([id, value[rcp][timeFrame][returnPeriod][3]]);
+    }
+    return acc;
+  }, []);
   let colors = ['match', ['get', 'id']];
 
   locVals.forEach(([id, value], i) => {
