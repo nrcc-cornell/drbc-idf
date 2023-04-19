@@ -173,13 +173,29 @@ const calculateProjectedData = (
 const compileTableData = (chartData, hoveredData, togglesInfo) => {
   if (!chartData || !chartData.projectedData) return null;
 
-  const targetRows = [
-    ['Last Hovered', null],
-    ['60min', 4],
-    ['6hr', 7],
-    ['12hr', 8],
-    ['24hr', 9],
-  ];
+  let targetRows;
+  if (hoveredData) {
+    targetRows = [
+      ['Last Hovered', null],
+      ['60min', 4],
+      ['6hr', 7],
+      ['12hr', 8],
+      ['24hr', 9],
+    ];
+  } else {
+    targetRows = [
+      ['5min', 0],
+      ['10min', 1],
+      ['15min', 2],
+      ['30min', 3],
+      ['60min', 4],
+      ['2hr', 5],
+      ['3hr', 6],
+      ['6hr', 7],
+      ['12hr', 8],
+      ['24hr', 9]
+    ];
+  }
 
   const projectedColumns = togglesInfo.slice(1).reduce(
     (acc, ciInfo) => {
@@ -331,6 +347,7 @@ export const DataProvider = ({ children }) => {
     adjustments,
     percentileOrder,
     legendColors,
+    exportData: compileTableData(chartData, null, togglesInfo)
   };
   return <DataContext.Provider value={value}>{children}</DataContext.Provider>;
 };

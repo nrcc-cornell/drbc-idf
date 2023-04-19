@@ -1,43 +1,16 @@
-.drbc-layout-mock {
+.drbc-layout {
   width: 100vw;
   overflow-y: scroll;
   background-color: #a7a9a8;
   min-height: 100vh;
 
-  .drbc-content-container-mock {
+  .drbc-content-container {
     background-color: white;
     width: 1200px;
     margin: 0 auto;
-    min-height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-
-    .drbc-header-mock,
-    .drbc-footer-mock {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-size: 30px;
-      font-family: Georgia, 'Times New Roman', Times, serif;
-    }
-
-    .drbc-header-mock {
-      background-color: #194186;
-      color: white;
-      height: 188px;
-      width: 100%;
-      box-shadow: 0px 25px 5px 0px rgba(0, 0, 0, 0.2);
-      margin-bottom: 35px;
-      margin-top: 0px;
-    }
-
-    .drbc-footer-mock {
-      background-color: rgba(0, 0, 0, 0.1);
-      height: 150px;
-      width: 100%;
-      margin: 0;
-    }
 
     #drb-idf-main-container {
       .panel-left {
@@ -60,6 +33,11 @@
         border-top: 1px solid rgb(180, 180, 180);
         border-bottom: 1px solid rgb(180, 180, 180);
       }
+    }
+
+    #hidden-pdf-table {
+      position: absolute;
+      z-index: -1;
     }
   }
 }

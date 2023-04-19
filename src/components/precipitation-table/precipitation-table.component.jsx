@@ -1,4 +1,5 @@
-import React, { useContext } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import {
   Table,
   TableBody,
@@ -9,10 +10,7 @@ import {
 import TableCell, { tableCellClasses } from '@mui/material/TableCell';
 import { styled } from '@mui/material/styles';
 
-import { DataContext } from '../../contexts/data.context';
-
 import './precipitation-table.styles.scss';
-import { PdfContext } from '../../contexts/pdf.context';
 
 const StyledTableCell = styled(TableCell)({
   [`&.${tableCellClasses.head}`]: {
@@ -29,19 +27,17 @@ const StyledTableCell = styled(TableCell)({
   },
 });
 
-export default function PrecipitationTable() {
-  const { precipDataRef } = useContext(PdfContext);
-  const { tableData } = useContext(DataContext);
-  if (!tableData) return '';
+export default function PrecipitationTable({ data, tableRef }) {
+  if (!data) return '';
 
-  const iOfFirstMedian = tableData[0].findIndex((val) => val === 'Median');
+  const iOfFirstMedian = data[0].findIndex((val) => val === 'Median');
   const numProjectedCols = iOfFirstMedian + (iOfFirstMedian - 1);
   const numAtlas14Cols =
-    tableData[0][tableData[0].length - 1] === 'Median' ? 1 : 3;
+    data[0][data[0].length - 1] === 'Median' ? 1 : 3;
 
   return (
     <div className='precip-table-container'>
-      <TableContainer className='precip-table-content' ref={precipDataRef}>
+      <TableContainer className='precip-table-content' ref={tableRef}>
         <Table size='small' aria-label='table of preciption projections'>
           <TableHead>
             <TableRow>
@@ -60,7 +56,7 @@ export default function PrecipitationTable() {
               </StyledTableCell>
             </TableRow>
             <TableRow>
-              {tableData[0].map((colName, i) => (
+              {data[0].map((colName, i) => (
                 <StyledTableCell
                   key={'header' + i}
                   align={i === 0 ? 'left' : 'center'}
@@ -72,7 +68,7 @@ export default function PrecipitationTable() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {tableData.slice(1).map((row, i) => (
+            {data.slice(1).map((row, i) => (
               <TableRow
                 hover
                 key={'row' + i}
@@ -102,3 +98,11 @@ export default function PrecipitationTable() {
     </div>
   );
 }
+
+PrecipitationTable.propTypes = {
+  data: PropTypes.array,
+  tableRef: PropTypes.oneOfType([
+    PropTypes.func, 
+    PropTypes.shape({ current: PropTypes.any })
+])
+};

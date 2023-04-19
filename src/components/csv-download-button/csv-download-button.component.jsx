@@ -8,17 +8,17 @@ import { OptionsContext } from '../../contexts/options.context';
 import Button from '../button/button.component';
 
 export default function CsvDownloadButton() {
-  const { tableData, adjustments, percentileOrder } = useContext(DataContext);
+  const { exportData, adjustments, percentileOrder } = useContext(DataContext);
   const { selectedLocation } = useContext(MapContext);
   const { selectByOptions, returnPeriod, rcp, timeFrame } =
     useContext(OptionsContext);
 
   const handleCsvDownload = () => {
     const numEmptyAroundProj = Array(
-      tableData[0].findIndex((val) => val === 'Median') - 1
+      exportData[0].findIndex((val) => val === 'Median') - 1
     ).fill('');
     const numEmptyAroundAtlas = Array(
-      tableData[0][tableData[0].length - 1] === 'Median' ? 0 : 1
+      exportData[0][exportData[0].length - 1] === 'Median' ? 0 : 1
     ).fill('');
     const lng = (
       Math.round(selectedLocation.coords.lng * 10000) / 10000
@@ -62,7 +62,7 @@ export default function CsvDownloadButton() {
         'Atlas 14 (inches)',
         ...numEmptyAroundAtlas,
       ],
-      ...tableData,
+      ...exportData,
     ];
 
     csvContent =
