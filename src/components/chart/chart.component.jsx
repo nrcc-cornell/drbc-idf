@@ -167,7 +167,7 @@ export default function Chart() {
       },
     },
     title: {
-      text: `IDF Curve: ${returnPeriod}-Year Return Period Under RCP ${rcp
+      text: `IDF Curve: ${100 / parseInt(returnPeriod)}% Annual Exceedance Probability Under RCP ${rcp
         .split('')
         .join('.')}, ${timeFrame}`,
       style: {

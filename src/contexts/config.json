@@ -35,37 +35,37 @@
     ]
   },
   "returnPeriod": {
-    "name": "Return Period",
+    "name": "Annual Exceedance Probability",
     "options": [
       {
         "value": "2",
-        "ariaLabel": "2-year return period",
-        "text": "2-year"
+        "ariaLabel": "50% (2-year) annual exceedance probability",
+        "text": "50%"
       },
       {
         "value": "5",
-        "ariaLabel": "5-year return period",
-        "text": "5-year"
+        "ariaLabel": "20% (5-year) annual exceedance probability",
+        "text": "20%"
       },
       {
         "value": "10",
-        "ariaLabel": "10-year return period",
-        "text": "10-year"
+        "ariaLabel": "10% (10-year) annual exceedance probability",
+        "text": "10%"
       },
       {
         "value": "25",
-        "ariaLabel": "25-year return period",
-        "text": "25-year"
+        "ariaLabel": "4% (25-year) annual exceedance probability",
+        "text": "4%"
       },
       {
         "value": "50",
-        "ariaLabel": "50-year return period",
-        "text": "50-year"
+        "ariaLabel": "2% (50-year) annual exceedance probability",
+        "text": "2%"
       },
       {
         "value": "100",
-        "ariaLabel": "100-year return period",
-        "text": "100-year"
+        "ariaLabel": "1% (100-year) annual exceedance probability",
+        "text": "1%"
       }
     ]
   },

@@ -32,7 +32,7 @@ export default function CsvDownloadButton() {
       ['Selected coordinates:', lng, lat],
       [`${selectByOptions.text} of Selection:`, selectedLocation.name],
       ['State of Selection:', selectedLocation.state_abbr],
-      ['Return Period:', `${returnPeriod}-year`],
+      ['Annual Exceedance Probability:', `${100 / parseInt(returnPeriod)}%`],
       ['Emission Scenario:', rcp.split('').join('.')],
       ['Time Period:', timeFrame],
       [''],
