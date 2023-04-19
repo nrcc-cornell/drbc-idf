@@ -126,20 +126,6 @@ export default function Chart() {
       href: 'http://www.nrcc.cornell.edu/',
     },
     series,
-    // exporting: {
-    //   buttons: {
-    //     contextButton: {
-    //       menuItems: [
-    //         'printChart',
-    //         'separator',
-    //         'downloadPNG',
-    //         'downloadJPEG',
-    //         'downloadPDF',
-    //         'downloadSVG',
-    //       ],
-    //     },
-    //   },
-    // },
     plotOptions: {
       line: {
         marker: {
@@ -183,7 +169,7 @@ export default function Chart() {
     title: {
       text: `IDF Curve: ${returnPeriod}-Year Return Period Under RCP ${rcp
         .split('')
-        .join('.')} From ${timeFrame}`,
+        .join('.')}, ${timeFrame}`,
       style: {
         fontFamily: "Georgia, 'Times New Roman', Times, serif",
       },
@@ -222,9 +208,9 @@ export default function Chart() {
           fontFamily: "Georgia, 'Times New Roman', Times, serif",
           color: axesTextColor,
         },
-        margin: 8,
+        margin: 4,
       },
-      labels: { x: -8, style: { color: axesTextColor } },
+      labels: { x: -4, style: { color: axesTextColor } },
       tickWidth: 1,
       tickLength: 3,
       tickColor: axesColor,

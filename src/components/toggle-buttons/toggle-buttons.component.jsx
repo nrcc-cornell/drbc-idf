@@ -54,7 +54,6 @@ export default function ToggleButtons({
         onChange={handleChange}
         aria-label={label || ''}
         size='small'
-        sx={{ marginLeft: '8px' }}
       >
         {optionsArray.map((optionInfo) => (
           <StyledToggleButton

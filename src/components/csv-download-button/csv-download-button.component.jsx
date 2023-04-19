@@ -41,7 +41,7 @@ export default function CsvDownloadButton() {
         '',
         ...percentileOrder.map((percentile) =>
           parseInt(percentile)
-            ? `${percentile}th`
+            ? `${percentile}${percentile === '83' ? 'rd' : 'th'}`
             : percentile.charAt(0).toUpperCase() + percentile.slice(1)
         ),
       ],

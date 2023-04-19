@@ -81,7 +81,7 @@ export default function LocationInfo({ hovered }) {
                 align='center'
                 sx={{ '&:last-child': { borderRight: 0 } }}
               >
-                {percentile === 'median' ? 'Median' : percentile + 'th'}
+                {percentile === 'median' ? 'Median' : percentile + (percentile === '83' ? 'rd' : 'th')}
               </StyledTableCell>
             ))}
           </TableRow>
