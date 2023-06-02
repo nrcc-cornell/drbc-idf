@@ -16,7 +16,7 @@ const StyledToggleButton = styled(ToggleButton)(() => ({
       backgroundColor: 'rgba(49, 115, 214, 0.1)',
     },
     '&.Mui-selected': {
-      backgroundColor: '#194186',
+      backgroundColor: 'rgb(54, 79, 129)',
       color: 'white',
     },
     '&.Mui-disabled': {
@@ -29,7 +29,7 @@ const StyledToggleButton = styled(ToggleButton)(() => ({
 
 const StyledLabel = styled(Typography)(() => ({
   '&.MuiTypography-root': {
-    fontFamily: "Georgia, 'Times New Roman', Times, serif",
+    fontFamily: 'Verdana, Arial, Helvetica, sans-serif',
     fontSize: '14px',
   },
 }));

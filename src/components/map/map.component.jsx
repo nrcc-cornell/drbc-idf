@@ -18,11 +18,8 @@ import './map.styles.scss';
 mapboxgl.accessToken =
   'pk.eyJ1IjoiaWRmY3VydmV0b29sYWRtaW4iLCJhIjoiY2xkdGE0M3hpMDhpYzNxcGM1dm9yYjk5YyJ9.i1-mSRRpL-fw0mUBY4o_6A';
 
-//// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
-mapboxgl.workerClass =
-  //// eslint-disable-next-line @typescript-eslint/no-var-requires
-  require('worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker').default;
+// eslint-disable-next-line import/no-webpack-loader-syntax
+mapboxgl.workerClass = require('worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker').default;
 
 export default function MapComponent() {
   const {

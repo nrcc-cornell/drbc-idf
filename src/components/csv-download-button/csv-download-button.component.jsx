@@ -28,6 +28,9 @@ export default function CsvDownloadButton() {
     ).toFixed(4);
 
     let csvContent = [
+      ['Data from ‘Projecting Extreme Precipitation in the Delaware River Basin’'],
+      [''],
+      [''],
       ['Date:', new Date().toLocaleDateString()],
       ['Selected coordinates:', lng, lat],
       [`${selectByOptions.text} of Selection:`, selectedLocation.name],
@@ -63,6 +66,9 @@ export default function CsvDownloadButton() {
         ...numEmptyAroundAtlas,
       ],
       ...exportData,
+      [''],
+      [''],
+      ['This [Data / Table] was downloaded from ‘Projecting Extreme Precipitation in the Delaware River Basin’ available at [URL]. The projection tool was developed by the Northeast Regional Climate Center (NRCC) at Cornell University on behalf of the Delaware River Basin Commission (DRBC). Any person who publishes or re-posts this data in whole or in part should credit the DRBC. The DRBC is a federal-interstate commission formed in 1961 to manage, protect, and improve the water resources of the Delaware River Basin. The project was funded, in part, by the U.S. Fish and Wildlife Service (FWS) through the National Fish and Wildlife Foundation’s (NFWF) Delaware Watershed Conservation Fund (DWCF). The views and conclusions contained in this document are those of the authors and should not be interpreted as representing the opinions or policies of the U.S. Government or the National Fish and Wildlife Foundation and its funding sources. Mention of trade names or commercial products does not constitute their endorsement by the U.S. Government, or the National Fish and Wildlife Foundation or its funding sources.'],
     ];
 
     csvContent =

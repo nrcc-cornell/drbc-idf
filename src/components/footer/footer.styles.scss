@@ -1,7 +1,8 @@
 .drbc-footer {
-  font-family: Georgia, 'Times New Roman', Times, serif;
-  background-color: rgba(0, 0, 0, 0.1);
-  height: 125px;
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  background-color: rgb(54, 79, 129);
+  color: white;
+  height: 100px;
   width: 100%;
   margin: 0;
   
@@ -11,14 +12,22 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 10px;
+    gap: 6px;
 
     p {
       text-align: center;
-      font-size: 12px;
-      width: 90%;
-      max-width: 800px;
+      font-size: 10px;
+      width: 99%;
       margin: 0;
+
+      a:link,
+      a:visited,
+      a:active {
+        color: rgb(174, 215, 235);
+      }
+      a:hover {
+        color: white;
+      }
     }
   }
 }

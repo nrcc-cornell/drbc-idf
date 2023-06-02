@@ -9,12 +9,11 @@ import { OptionsContext } from '../../contexts/options.context';
 import './content.styles.scss';
 
 const componentOptions = {
-  highchart: <Chart />,
-  testing: <div>Rendered Test div</div>,
+  highchart: <Chart />
 };
 
 const HeadingTypography = styled((props) => <Typography {...props} />)({
-  fontFamily: "Georgia, 'Times New Roman', Times, serif",
+  fontFamily: 'Verdana, Arial, Helvetica, sans-serif',
   color: 'rgb(100,100,100)',
 });
 

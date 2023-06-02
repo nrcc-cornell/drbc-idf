@@ -22,7 +22,7 @@ const StyledTabs = styled((props) => (
 
 const StyledTab = styled((props) => <Tab {...props} />)(() => ({
   textTransform: 'none',
-  fontFamily: "Georgia, 'Times New Roman', Times, serif",
+  fontFamily: 'Verdana, Arial, Helvetica, sans-serif',
   color: 'rgb(80,80,80)',
   fontWeight: 'bold',
   minHeight: TABS_HEIGHT,
@@ -31,13 +31,13 @@ const StyledTab = styled((props) => <Tab {...props} />)(() => ({
   borderTop: '1px solid rgb(200,200,200)',
   borderLeft: '1px solid rgb(200,200,200)',
   borderBottom: 'none',
+  '&:hover': {
+    backgroundColor: 'rgba(39,133,88, 0.12)',
+  },
   '&.Mui-selected': {
     color: 'white',
-    backgroundColor: '#36845c',
+    backgroundColor: 'rgb(39, 133, 88) !important',
     border: 'none',
-  },
-  '&.Mui-focusVisible': {
-    backgroundColor: 'rgba(100, 95, 228, 0.32)',
   },
 }));
 
