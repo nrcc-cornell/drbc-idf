@@ -1,13 +1,13 @@
 .ci-toggles-container {
   width: fit-content;
-  position: absolute;
-  bottom: -3px;
-  left: 50%;
-  transform: translateX(-50%);
+  position: relative;
+  bottom: 6px;
 
   .ci-toggles-label {
     font-size: 12px;
     color: #6e6e6e;
     text-align: center;
+    position: relative;
+    top: 5px;
   }
 }

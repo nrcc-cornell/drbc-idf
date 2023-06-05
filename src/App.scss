@@ -8,7 +8,8 @@
   .drbc-content-container {
     background-color: white;
     max-width: 1200px;
-    height: 100%;
+    height: fit-content;
+    min-height: 100%;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
@@ -27,22 +28,34 @@
 
       .top-row {
         display: flex;
-        height: 60px;
       }
 
       .bottom-row {
         display: flex;
         flex-grow: 1;
-
-        @media (max-width: 999px) {
-          flex-direction: column;
-        }
       }
     }
-
+    
     #hidden-pdf-table {
       position: absolute;
       z-index: -1;
+    }
+  }
+}
+
+@media (max-width: 829px) {
+  .drbc-layout {
+    .drbc-content-container {
+      #drb-idf-main-container {
+        .panel {
+          width: 80%;
+          margin: 0 auto;
+        }
+
+        .bottom-row {
+          flex-direction: column;
+        }
+      }
     }
   }
 }

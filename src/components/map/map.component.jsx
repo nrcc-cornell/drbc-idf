@@ -97,7 +97,7 @@ export default function MapComponent() {
   }, [mapRef.current]);
 
   return (
-    <div className='map-container'>
+    <div id='map-container'>
       <Map
         {...viewState}
         ref={mapRef}

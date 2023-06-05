@@ -1,6 +1,29 @@
-.content-container {
+#content-container {
   height: 100%;
   box-sizing: border-box;
   background-color: rgba(0, 0, 0, 0.03);
   border-top: 1px solid rgb(180, 180, 180);
+  border-bottom: 1px solid rgb(180, 180, 180);
+}
+
+@media (max-width: 829px) {
+  #content-container {
+    border-left: 1px solid rgb(180, 180, 180);
+    border-right: 1px solid rgb(180, 180, 180);
+    margin-bottom: 12px;
+  }
+}
+
+@media (max-width: 440px) {
+  #content-container {
+    div {
+      h2 {
+        font-size: 14px !important;
+      }
+
+      p {
+        font-size: 11px !important;
+      }
+    }
+  }
 }

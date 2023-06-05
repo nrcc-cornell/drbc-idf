@@ -7,18 +7,25 @@ import { OptionsContext } from '../../contexts/options.context';
 import './nav.styles.scss';
 
 const TABS_HEIGHT = '36px';
-const StyledTabs = styled((props) => (
-  <Tabs
-    {...props}
-    TabIndicatorProps={{ children: <span className='MuiTabs-indicatorSpan' /> }}
-  />
-))({
-  minHeight: TABS_HEIGHT,
-  height: TABS_HEIGHT,
-  '& .MuiTabs-indicator': {
-    display: 'none',
-  },
-});
+const makeStyledTabs = (w) => {
+  return styled((props) => (
+    <Tabs
+      {...props}
+      TabIndicatorProps={{ children: <span className='MuiTabs-indicatorSpan' /> }}
+    />
+  ))({
+    minHeight: TABS_HEIGHT,
+    height: TABS_HEIGHT,
+    '& .MuiTabs-indicator': {
+      display: 'none',
+    },
+    '& .MuiTabs-flexContainer': {
+      'button:last-child': {
+        borderRight: w > 829 ? 'none' : '1px solid rgb(200,200,200)'
+      }
+    }
+  });
+}
 
 const StyledTab = styled((props) => <Tab {...props} />)(() => ({
   textTransform: 'none',
@@ -39,10 +46,18 @@ const StyledTab = styled((props) => <Tab {...props} />)(() => ({
     backgroundColor: 'rgb(39, 133, 88) !important',
     border: 'none',
   },
+  '@media (max-width: 440px)': {
+    fontSize: '12px'
+  },
+  '@media (max-width: 394px)': {
+    fontSize: '10px'
+  }
 }));
 
 export default function Nav() {
   const { navTab, navTabOptions, setNavTab } = useContext(OptionsContext);
+
+  const StyledTabs = makeStyledTabs(window.innerWidth);
 
   return (
     <div className='nav-container'>

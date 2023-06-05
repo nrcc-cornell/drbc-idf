@@ -64,5 +64,5 @@ export default function Content() {
     }
   };
 
-  return <div className='content-container'>{renderContent(tabContent)}</div>;
+  return <div id='content-container'>{renderContent(tabContent)}</div>;
 }

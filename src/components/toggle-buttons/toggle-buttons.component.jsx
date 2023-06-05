@@ -24,6 +24,10 @@ const StyledToggleButton = styled(ToggleButton)(() => ({
       color: 'rgb(120,120,120)',
       fontStyle: 'italic',
     },
+    '@media (max-width: 440px)': {
+      fontSize: '10px',
+      minWidth: '36px'
+    }
   },
 }));
 
@@ -31,6 +35,10 @@ const StyledLabel = styled(Typography)(() => ({
   '&.MuiTypography-root': {
     fontFamily: 'Verdana, Arial, Helvetica, sans-serif',
     fontSize: '14px',
+    
+    '@media (max-width: 440px)': {
+      fontSize: '12px'
+    }
   },
 }));
 
