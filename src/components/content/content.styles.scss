@@ -1,5 +1,6 @@
 #content-container {
-  height: 519px;
+  height: calc(100vh - 356px);
+  min-height: 344px;
   overflow-y: auto;
   box-sizing: border-box;
   background-color: rgba(0, 0, 0, 0.03);

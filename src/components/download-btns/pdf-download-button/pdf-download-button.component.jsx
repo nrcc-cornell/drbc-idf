@@ -101,7 +101,7 @@ export default function PdfDownloadButton() {
       maxWidth,
       null,
       pdfPadding,
-      imgHeightOffset + 43
+      imgHeightOffset
     );
 
     addFooterText('table', pdf, maxWidth + pdfPadding);
