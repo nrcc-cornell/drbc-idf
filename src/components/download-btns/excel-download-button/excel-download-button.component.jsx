@@ -3,11 +3,11 @@ import TableChartIcon from '@mui/icons-material/TableChart';
 
 import writeXlsxFile from 'write-excel-file';
 
-import { DataContext } from '../../contexts/data.context';
-import { MapContext } from '../../contexts/map.context';
-import { OptionsContext } from '../../contexts/options.context';
+import { DataContext } from '../../../contexts/data.context';
+import { MapContext } from '../../../contexts/map.context';
+import { OptionsContext } from '../../../contexts/options.context';
 
-import Button from '../button/button.component';
+import Button from '../../button/button.component';
 
 export default function ExcelDownloadButton() {
   const { exportData, adjustments, percentileOrder } = useContext(DataContext);
@@ -77,7 +77,12 @@ export default function ExcelDownloadButton() {
       }),
       [null],
       [null],
-      [{span: span, rowSpan: 10, alignVertical: 'center', wrap: true, value: `This data was downloaded from ‘Projecting Extreme Precipitation in the Delaware River Basin’ available at ${window.location.href} (Link 1). The projection tool was developed by the Northeast Regional Climate Center (NRCC) at Cornell University (Link 2) on behalf of the Delaware River Basin Commission (DRBC) (Link 3). Any person who publishes or re-posts this data in whole or in part should credit the DRBC. The DRBC is a federal-interstate commission formed in 1961 to manage, protect, and improve the water resources of the Delaware River Basin. The project was funded, in part, by the U.S. Fish and Wildlife Service (FWS) through the National Fish and Wildlife Foundation’s (NFWF) Delaware Watershed Conservation Fund (DWCF). The views and conclusions contained in this document are those of the authors and should not be interpreted as representing the opinions or policies of the U.S. Government or the National Fish and Wildlife Foundation and its funding sources. Mention of trade names or commercial products does not constitute their endorsement by the U.S. Government, or the National Fish and Wildlife Foundation or its funding sources.`}],
+      [{span: span, rowSpan: 15, alignVertical: 'center', wrap: true, value: `This data was downloaded from ‘Projecting Extreme Precipitation in the Delaware River Basin’ available at ${window.location.href} (Link 1). The projection tool was developed by the Northeast Regional Climate Center (NRCC) at Cornell University (Link 2) on behalf of the Delaware River Basin Commission (DRBC) (Link 3). The DRBC is a federal-interstate compact agency formed in 1961 to manage, protect, and improve the water resources of the Delaware River Basin. Any person who publishes or re-posts this data in whole or in part should credit the DRBC. These data are products of the Northeast Regional Climate Center at Cornell University and are for the unique purposes of the ‘Projecting Extreme Precipitation in the Delaware River Basin’ visualization tool. The Delaware River Basin Commission makes no express or implied warranty regarding the utility of the data for other purposes or their display on all computer systems, nor does the act of distribution constitute any such warranty. The project was funded, in part, by the U.S. Fish and Wildlife Service (FWS) through the National Fish and Wildlife Foundation’s (NFWF) Delaware Watershed Conservation Fund (DWCF). The views and conclusions contained in this document are those of the authors and should not be interpreted as representing the opinions or policies of the U.S. Government or the National Fish and Wildlife Foundation and its funding sources. Mention of trade names or commercial products does not constitute their endorsement by the U.S. Government, or the National Fish and Wildlife Foundation or its funding sources.`}],
+      [null],
+      [null],
+      [null],
+      [null],
+      [null],
       [null],
       [null],
       [null],
