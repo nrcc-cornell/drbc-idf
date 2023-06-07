@@ -45,19 +45,21 @@ export default function Content() {
   const renderContent = (tabContent) => {
     if (tabContent.length) {
       return tabContent.map((content, i) => {
+        let html = '';
         if (content.sectionType === 'normal') {
-          return (
+          html = (
             <div key={i} style={{ padding: '6px' }}>
               {renderNormalContent(content.sectionContent, i)}
             </div>
           );
         } else if (content.sectionType === 'component') {
-          return (
+          html = (
             <Fragment key={i}>
               {componentOptions[content.sectionContent]}
             </Fragment>
           );
         }
+        return html;
       });
     } else {
       return <></>;
