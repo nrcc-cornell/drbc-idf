@@ -9,7 +9,75 @@
           "body": [
             {
               "element": "p",
-              "text": "Click on desired option and map will update."
+              "text": "The map will automatically update after any option is changed."
+            },{
+              "element": "span",
+              "text": "Select By: ",
+              "styles": { "fontWeight": "bold" }
+            },{
+              "element": "p",
+              "text": "Changes the selectable areas on the map. If you have a location selected and change this option the tool will automatically determine the new area that should be selected based on the pin location.",
+              "styles": { "marginLeft": "12px" }
+            },{
+              "element": "span",
+              "text": "Emission Scenario: ",
+              "styles": { "fontWeight": "bold" }
+            },{
+              "element": "p",
+              "text": "Changes the projection between low emission future (Representative Concentration Pathway 4.5) and high emission future (Representative Concentration Pathway 8.5).",
+              "styles": { "marginLeft": "12px" }
+            },{
+              "element": "span",
+              "text": "Time Period: ",
+              "styles": { "fontWeight": "bold" }
+            },{
+              "element": "p",
+              "text": "Changes the projection time period.",
+              "styles": { "marginLeft": "12px" }
+            },{
+              "element": "span",
+              "text": "Annual Exceedance Probability: ",
+              "styles": { "fontWeight": "bold" }
+            },{
+              "element": "p",
+              "text": "Changes the probability of exceedance.",
+              "styles": { "marginLeft": "12px" }
+            }
+          ]
+        }
+      },
+      {
+        "sectionType": "normal",
+        "sectionContent": {
+          "heading": "Changing Tabs",
+          "body": [
+            {
+              "element": "p",
+              "text": "Clicking on the tabs above will change the content displayed in this box."
+            },{
+              "element": "span",
+              "text": "User Guide: ",
+              "styles": { "fontWeight": "bold" }
+            },{
+              "element": "p",
+              "text": "Displays the current content.",
+              "styles": { "marginLeft": "12px" }
+            },{
+              "element": "span",
+              "text": "IDF Curve: ",
+              "styles": { "fontWeight": "bold" }
+            },{
+              "element": "p",
+              "text": "After selecting a location on the map this tab displays the IDF curve chart as well as a table of the data displayed in the chart.",
+              "styles": { "marginLeft": "12px" }
+            },{
+              "element": "span",
+              "text": "About the Data: ",
+              "styles": { "fontWeight": "bold" }
+            },{
+              "element": "p",
+              "text": "A description of the data source.",
+              "styles": { "marginLeft": "12px" }
             }
           ]
         }
@@ -21,7 +89,61 @@
           "body": [
             {
               "element": "p",
-              "text": "Click on desired location and chart will update."
+              "text": "Click on the map within a colored region at your desired location. The selected area will be highlighted by an orange border and the map will zoom and/or pan to the selected location. A 'Reset Zoom' button will appear to allow you to return to the original view."
+            },{
+              "element": "p",
+              "text": "The tab will automatically change to 'IDF Curve' and will display the IDF curve chart for the area that you selected."
+            },{
+              "element": "p",
+              "text": "A new table will populate at the bottom of the map and dislay the change factors for the area that you selected."
+            }
+          ]
+        }
+      },
+      {
+        "sectionType": "normal",
+        "sectionContent": {
+          "heading": "Adding Confidence Intervals to the Chart",
+          "body": [
+            {
+              "element": "p",
+              "text": "Hovering your cursor over any of the confidence interval toggles will display what each toggle is for. Clicking on a toggle will add or remove that confidence interval in the chart and data table. Only the intervals that are turned on will be included in your file downloads."
+            }
+          ]
+        }
+      },
+      {
+        "sectionType": "normal",
+        "sectionContent": {
+          "heading": "Downloading Data/Chart",
+          "body": [
+            {
+              "element": "p",
+              "text": "Once you have selected a location, go to the 'IDF Curve' tab. Here you will find the download buttons below the chart and left of the confidence interval toggles."
+            },{
+              "element": "span",
+              "text": "On a large screen: ",
+              "styles": { "fontWeight": "bold" }
+            },{
+              "element": "p",
+              "text": "Simply click button for the desired file type to download it.",
+              "styles": { "marginLeft": "12px" }
+            },{
+              "element": "span",
+              "text": "On a small screen: ",
+              "styles": { "fontWeight": "bold" }
+            },{
+              "element": "p",
+              "text": "Click the button with the download icon, then click the button for the desired file type to download it.",
+              "styles": { "marginLeft": "12px" }
+            },{
+              "element": "span",
+              "text": "NOTE: ",
+              "styles": { "fontWeight": "bold" }
+            },{
+              "element": "p",
+              "text": "The 'Excel' file will contain data in a table, but will not include the IDF curve chart. The 'PDF' file will contain both the data and the IDF curve chart.",
+              "styles": { "marginLeft": "12px" }
             }
           ]
         }

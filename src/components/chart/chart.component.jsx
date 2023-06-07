@@ -153,7 +153,7 @@ export default function Chart() {
       },
     },
     chart: {
-      height: 500,
+      height: 514,
       width: window.innerWidth > 829 ? parentContainer.clientWidth - 5 : parentContainer.clientWidth,
       spacing: [13, 0, 0, 0],
       marginLeft: 35,

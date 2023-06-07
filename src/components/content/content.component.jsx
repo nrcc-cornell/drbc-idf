@@ -31,7 +31,7 @@ const renderNormalContent = (content, i) => {
         <HeadingTypography component='h2'>{content.heading}</HeadingTypography>
       )}
       {content.body.map((bodyContent, j) => (
-        <BodyTypography key={j} component={bodyContent.element}>
+        <BodyTypography key={j} component={bodyContent.element} sx={bodyContent.styles}>
           {bodyContent.text}
         </BodyTypography>
       ))}
@@ -44,23 +44,25 @@ export default function Content() {
 
   const renderContent = (tabContent) => {
     if (tabContent.length) {
-      return tabContent.map((content, i) => {
-        let html = '';
-        if (content.sectionType === 'normal') {
-          html = (
-            <div key={i} style={{ padding: '6px' }}>
-              {renderNormalContent(content.sectionContent, i)}
-            </div>
-          );
-        } else if (content.sectionType === 'component') {
-          html = (
-            <Fragment key={i}>
-              {componentOptions[content.sectionContent]}
-            </Fragment>
-          );
-        }
-        return html;
-      });
+      return <div>{
+        tabContent.map((content, i) => {
+          let html = '';
+          if (content.sectionType === 'normal') {
+            html = (
+              <div key={i} style={{ padding: '6px' }}>
+                {renderNormalContent(content.sectionContent, i)}
+              </div>
+            );
+          } else if (content.sectionType === 'component') {
+            html = (
+              <Fragment key={i}>
+                {componentOptions[content.sectionContent]}
+              </Fragment>
+            );
+          }
+          return html;
+        })
+      }</div>;
     } else {
       return <></>;
     }
