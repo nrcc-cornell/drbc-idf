@@ -7,6 +7,7 @@ const BUTTON_TYPE_CLASSES = {
   resetZoom: 'reset-zoom',
   // chartResetZoom: 'chart-reset-zoom',
   export: 'export',
+  textPdf: 'textPdf'
 };
 
 export default function Button({ children, buttonType, ...otherProps }) {
