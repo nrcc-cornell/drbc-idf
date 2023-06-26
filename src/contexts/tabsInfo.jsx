@@ -107,35 +107,36 @@ export const tabsInfo = [
 
         <ParagraphTypography>The historical and future downscaled atmosphere–ocean general circulation model (AOGCM) and Earth System model (ESM) output used in this study was obtained from two sources 1) North American Coordinated Regional Downscaling Experiment (NA-CORDEX) (Mearns et al., 2017) and 2) Localized Constructed Analog (LOCA) (Pierce et al., 2014). Simulations from the models’ historical period and two future Representative Concentration Pathways (RCP4.5 and RCP 8.5) (Collins et al. 2013) were used. Table 1 highlights the unique features of each of these datasets. For example, LOCA downscaling provides one of the highest resolution outputs, while NA-CORDEX, the only dynamically downscaled dataset selected for this study, has a much coarser spatial resolution. Since the downscaling approach, choice of global climate model (GCM) and RCP, and spatial and temporal resolution each introduce their own source of uncertainty, it is important to consider a range of these features to capture the plausible range of future precipitation extremes. Two other downscaled data sets were considered, Bias Corrected Constructed Analogue (BCCAv2) (Maraun et al., 2010) and Multivariate Adaptive Constructed Analogs (MACA) (Abatzoglou and Brown, 2012) but were excluded from the study based on the results of Lopez-Cantu et al. (2020).</ParagraphTypography>
         
-        <figure>
+        <figure style={{ margin: 'auto 25px' }}>
           <TableHeadingTypography><b>Table 1.</b> Characteristics of downscaled climate model datasets used in this study</TableHeadingTypography>
-          <div>TABLE HERE</div>
+          <div></div>
+          <img src={`${process.env.PUBLIC_URL}/assets/table1.png`} alt='Table describing characteristics of downscaled climate model datasets used in this study' style={{ width: '100%' }} />
           <CaptionTypography>*Gridded spatial resolutions across all datasets are approximate and based on conversions from degrees to kilometers at mid-latitudes.</CaptionTypography>
         </figure>
 
         <ParagraphTypography>The LOCA dataset is widely used, as it forms the basis for downscaling in the current National Climate Assessment (USGCRP, 2018). Projections from the 31 GCMs summarized in Table 2, downscaled to a spatial resolution of 0.0625° (approximately 6 km or the distance from Philadelphia to Camden), provide the foundation for the LOCA dataset. The LOCA data cover a 1950-2005 historical period and projections for the 2006-2099 future period using RCP4.5 and RCP8.5. Details regarding the statistical downscaling methodology used in LOCA can be found in (Pierce et al., 2014). Briefly, the method begins by matching the spatial pattern of the variable of interest from a future GCM projection to that based on historical observations over a region. From a pool of candidate observed historical analog days the single best candidate, based on minimization of root mean square error, is chosen as an analog, unless a different analog day is selected for neighboring grid cells, in which case a weighted combination of the observed analog days is used. In either case, high-resolution observed data corresponding to the historical analog day is used to represent the downscaled future rainfall.</ParagraphTypography>
         <ParagraphTypography>NA-CORDEX, on the other hand, employs a dynamical downscaling approach based on a set of regional climate models (RCM) with boundary conditions specified by GCM simulations from the CMIP5 archive. The RCM domain is limited to the area covering the majority of North America. Like LOCA, historical and future simulations are available for the period 1950-2100, using both RCP8.5 and RCP4.5. Most simulations are available with a spatial resolution of 0.22° (approximately 25 km or half the distance from Philadelphia to Trenton), however a subset of RCP4.5 simulations are only available at a 0.44° (50 km) resolution (the full distance from Philadelphia to Trenton). Table 3 summarizes the NA-CORDEX simulations used.</ParagraphTypography>
 
-        <figure>
+        <figure style={{ margin: 'auto 25px' }}>
           <TableHeadingTypography><b>Table 2.</b> List of CMIP5 models used in LOCA downscaling</TableHeadingTypography>
-          <div>TABLE HERE</div>
+          <img src={`${process.env.PUBLIC_URL}/assets/table2.png`} alt='Table describing CMIP5 models used in this study' style={{ width: '100%' }} />
         </figure>
 
-        <figure>
+        <figure style={{ margin: 'auto 25px' }}>
           <TableHeadingTypography><b>Table 3.</b> NA-CORDEX simulations used in this study</TableHeadingTypography>
-          <div>TABLE HERE</div>
+          <img src={`${process.env.PUBLIC_URL}/assets/table3.png`} alt='Table describing NA-CORDEX simulations used in this study' style={{ width: '100%' }} />
         </figure>
 
         <ParagraphTypography>Once the relevant data sets were downloaded, data processing proceeded according to the steps described below and outlined in Figure 1.</ParagraphTypography>
 
-        <figure>
-          <div>TABLE HERE</div>
+        <figure style={{ margin: 'auto 25px' }}>
+          <img src={`${process.env.PUBLIC_URL}/assets/figure1.png`} alt='Figure describing workflow used in analysis' style={{ width: '100%' }} />
           <FigureHeadingTypography><b>Figure 1.</b> Workflow to analyze gridded downscaled climate projections and estimate change factors at the county scale for the study area. The same workflow was repeated for each future period and RCP scenario.</FigureHeadingTypography>
         </figure>
 
         <SubSectionHeadingTypography>i. Extreme value analysis</SubSectionHeadingTypography>
         <ParagraphTypography>The n largest independent precipitation events are extracted separately from each downscaled data set and model, where n represents the number of available years of record. These values are known as a partial duration series (PDS). Thus, two events can be selected from the same year, provided they do not occur within seven days of each other. This 7-day period is chosen to assure the independence between the events. PDS are used as the basis of this work, given this method’s widespread application (e.g. Cook et al., 2017; DeGaetano and Castellano 2017; Lopez‐Cantu et al., 2020; Ragno et al. 2018; Thakali et al., 2016; Wu et al. 2019) and to ensure the inclusion of all relevant extreme rainfall events projected in the downscaled climate simulations.</ParagraphTypography>
-        <ParagraphTypography>A PDS was compiled for each grid cell, corresponding to the 50-year period from 1950- 1999. This period was designated the historical period as it corresponds to each downscaled model’s historical simulation period. Likewise, this time-period corresponds to the longest available overlap period between the downscaled simulations and stations included in NOAA Atlas 14. PDS for two future time periods 2020-2069 and 2050-2099 were also extracted. The 50-year length was selected to assure an adequate sample size for extreme value analysis, and to minimize the influence of the non-stationarity of the record and the potential effect of natural interdecadal variations in the extreme rainfall record (DeGaetano and Castellano, 2020). Separate PDS were also compiled for simulations using RCP8.5 and RCP4.5.</ParagraphTypography>
+        <ParagraphTypography>A PDS was compiled for each grid cell, corresponding to the 50-year period from 1950- 1999. This period was designated the historical period as it corresponds to each downscaled model’s historical simulation period. Likewise, this time-period corresponds to the longest available overlap period between the downscaled simulations and stations included in NOAA Atlas 14. PDS for two future time periods 2020-2069 and 2050-2099 were also extracted. The 50-year length was selected to assure an adequate sample size for extreme value analysis, and to minimize the influence of the non-stationarity of the record and the potential effect of natural interdecadal variations in the extreme rainfall record (DeGaetano and Castellano, 2017). Separate PDS were also compiled for simulations using RCP8.5 and RCP4.5.</ParagraphTypography>
         <ParagraphTypography>For each PDS, rainfall amounts corresponding to recurrence probabilities of 50%, 20%, 10%, 4%, 2% and 1% (i.e. 2-, 5-, 10- 25-, 50- and 100-year storms) were computed by simulating the methodology used in NOAA Atlas 14 (Bonnin et al., 2006; Perica et al., 2019). First, the python lmoments package (<a href='https://pypi.org/project/lmoments/' target='_blank' rel='noreferrer'>https://pypi.org/project/lmoments/</a>) was used to fit the generalized extreme value (GEV) distribution to each grid point’s PDS using the methods of Hosking (1990). Although not the only valid theoretical distribution for estimating extreme rainfall probabilities, the use of the GEV has been standard practice in prior extreme rainfall analyses (e.g. Papalexiou and Koutsoyiannis, 2013). Given the L-moments estimates for the GEV parameters, the lmoments library quagev method was used to obtain the specified quantiles of the GEV distribution.</ParagraphTypography>
         <ParagraphTypography>In addition, the regional L-moments procedure used in NOAA Atlas 14 Volume 10 (Perica et al., 2019) was adapted. Although the majority of sites lied outside the region covered by this atlas, the methodology employed to develop regions in the later atlas was an improvement over the earlier implementation as it defined regions relative to each station rather than a small set of broad regions and corrected an error in the procedure used to define confidence intervals. For each grid point, the 20 closest neighboring grids points, were identified. Sample lmoments were obtained for each of these points using the lmoments library samlmu routine and an average of the higher order moments computed. These averages along with the base grid’s location parameter (i.e. mean) were then used to obtain GEV parameters and quantiles.</ParagraphTypography>
         
@@ -213,9 +214,21 @@ export const tabsInfo = [
         </CitationTypography>
 
         <CitationTypography>
+          Hernández-Díaz, L., Nikiéma, O., Laprise, R., Winger, K., & Dandoy, S. 2019.
+          Effect of empirical correction of sea-surface temperature biases on the CRCM5-simulated climate and projected climate changes over North America.
+          <i>Climate Dynamics</i>,  53(1–2),  453– 476.
+        </CitationTypography>
+
+        <CitationTypography>
           Hosking, J. 1990.
           L-Moments: Analysis and Estimation of Distributions Using Linear Combinations of Order Statistics.
           Journal of the Royal Statistical Society. Series B (Methodological),52(1), 105-124.
+        </CitationTypography>
+        
+        <CitationTypography>
+          López‐Cantú, T., Prein, A.F. and Samaras, C., 2020.
+          Uncertainties in future US extreme precipitation from downscaled climate projections.
+          Geophysical Research Letters, 47(9), p.e2019GL086797.
         </CitationTypography>
         
         <CitationTypography>
@@ -223,12 +236,6 @@ export const tabsInfo = [
           Precipitation downscaling under climate change: Recent developments to bridge the gap between dynamical models and the end user.
           <i>Reviews of geophysics</i>, 48(3).
           <a href="https://doi.org/10.1029/2009RG000314" target='_blank' rel='noreferrer'>https://doi.org/10.1029/2009RG000314</a>.
-        </CitationTypography>
-        
-        <CitationTypography>
-          López‐Cantú, T., Prein, A.F. and Samaras, C., 2020.
-          Uncertainties in future US extreme precipitation from downscaled climate projections.
-          Geophysical Research Letters, 47(9), p.e2019GL086797.
         </CitationTypography>
         
         <CitationTypography>
@@ -252,6 +259,12 @@ export const tabsInfo = [
         </CitationTypography>
         
         <CitationTypography>
+          Perica, S., Pavlovic, S., St Laurent, M., Trypaluk, C., Unruh, D., Martin, D. and Wilhite, O., 2019.
+          Precipitation-Frequency Atlas of the United States. Volume 10, Version 3.0.
+          Northern States; Connecticut, Maine, Massachusetts, New Hampshire, New York, Rhode Island, Vermont.
+        </CitationTypography>
+        
+        <CitationTypography>
           Pierce, D.W., Cayan, D.R. and B.L. Thrasher. 2014.
           “Statistical downscaling using Localized Constructed Analogs (LOCA).”
           Journal of Hydrometeorology, volume 15, page 2558-2585.
@@ -272,15 +285,15 @@ export const tabsInfo = [
         </CitationTypography>
         
         <CitationTypography>
+          USGCRP, 2018:
+          <i>Impacts, Risks, and Adaptation in the United States: Fourth National Climate Assessment, Volume II</i>
+        </CitationTypography>
+
+        <CitationTypography>
           Wu, S., Markus, M., Lorenz, D., Angel, J.R. and Grady, K., 2019.
           “A Comparative Analysis of the Historical Accuracy of the Point Precipitation Frequency Estimates of Four Data Sets and Their Projections for the Northeastern United States.”
           Water 11 (6): 1279.
           <a href="https://doi.org/10.3390/w11061279" target='_blank' rel='noreferrer'>https://doi.org/10.3390/w11061279</a>.
-        </CitationTypography>
-        
-        <CitationTypography>
-          USGCRP, 2018:
-          <i>Impacts, Risks, and Adaptation in the United States: Fourth National Climate Assessment, Volume II</i>
         </CitationTypography>
       </ Box>
   }
