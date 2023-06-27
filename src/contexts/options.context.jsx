@@ -77,6 +77,7 @@ export const OptionsProvider = ({ children }) => {
     navTab,
     setNavTab,
     navTabOptions: tabsInfo.map((tabInfo) => tabInfo.name),
+    tabType: tabsInfo[navTab].contentType,
     tabContent: tabsInfo[navTab].content,
     togglesInfo,
     updateToggles,
