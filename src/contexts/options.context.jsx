@@ -2,7 +2,8 @@ import React, { createContext, useState } from 'react';
 import PropTypes from 'prop-types';
 
 import config from './config.json';
-import tabsInfo from './tabsInfo.json';
+import { tabsInfo } from './tabsInfo.jsx';
+// import tabsInfo from './tabsInfo.json';
 import togglesConfig from './togglesInfo.json';
 
 // Set up initial state of context
@@ -76,6 +77,7 @@ export const OptionsProvider = ({ children }) => {
     navTab,
     setNavTab,
     navTabOptions: tabsInfo.map((tabInfo) => tabInfo.name),
+    tabType: tabsInfo[navTab].contentType,
     tabContent: tabsInfo[navTab].content,
     togglesInfo,
     updateToggles,

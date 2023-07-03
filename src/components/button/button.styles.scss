@@ -8,7 +8,7 @@
   background-color: black;
   color: white;
   text-transform: uppercase;
-  font-family: 'Roboto', 'Helvetica Neue', sans-serif;
+  font-family: Verdana, Arial, Helvetica, sans-serif;
   font-weight: bolder;
   border: none;
   cursor: pointer;
@@ -25,15 +25,16 @@
     height: 32px;
     line-height: 30px;
     padding: 0px 15px;
-    background-color: #36845c;
+    background-color: rgb(39, 133, 88);
 
     &:hover {
-      background-color: #3da36e;
+      background-color: rgb(59, 153, 108);
     }
   }
 
+  &.textPdf,
   &.export {
-    background-color: #194186;
+    background-color: rgb(54, 79, 129);
     border: none;
     align-items: center;
     gap: 6px;
@@ -44,7 +45,11 @@
     height: 40px;
 
     &:hover {
-      background-color: #245ab8;
+      background-color: rgb(24, 99, 149);
     }
+  }
+
+  &.textPdf {
+    margin-left: 8px;
   }
 }

@@ -14,11 +14,11 @@ import './precipitation-table.styles.scss';
 
 const StyledTableCell = styled(TableCell)({
   [`&.${tableCellClasses.head}`]: {
-    backgroundColor: 'rgba(54,132,92,0.75)',
+    backgroundColor: 'rgb(39, 133, 88)',
     color: 'white',
     fontWeight: 'bold',
     fontSize: 15,
-    fontFamily: "Georgia, 'Times New Roman', Times, serif",
+    fontFamily: 'Verdana, Arial, Helvetica, sans-serif',
     borderRight: '1px solid rgb(200, 200, 200)',
   },
   [`&.${tableCellClasses.body}`]: {

@@ -7,22 +7,29 @@ import { OptionsContext } from '../../contexts/options.context';
 import './nav.styles.scss';
 
 const TABS_HEIGHT = '36px';
-const StyledTabs = styled((props) => (
-  <Tabs
-    {...props}
-    TabIndicatorProps={{ children: <span className='MuiTabs-indicatorSpan' /> }}
-  />
-))({
-  minHeight: TABS_HEIGHT,
-  height: TABS_HEIGHT,
-  '& .MuiTabs-indicator': {
-    display: 'none',
-  },
-});
+const makeStyledTabs = (w) => {
+  return styled((props) => (
+    <Tabs
+      {...props}
+      TabIndicatorProps={{ children: <span className='MuiTabs-indicatorSpan' /> }}
+    />
+  ))({
+    minHeight: TABS_HEIGHT,
+    height: TABS_HEIGHT,
+    '& .MuiTabs-indicator': {
+      display: 'none',
+    },
+    '& .MuiTabs-flexContainer': {
+      'button:last-child': {
+        borderRight: w > 829 ? 'none' : '1px solid rgb(200,200,200)'
+      }
+    }
+  });
+}
 
 const StyledTab = styled((props) => <Tab {...props} />)(() => ({
   textTransform: 'none',
-  fontFamily: "Georgia, 'Times New Roman', Times, serif",
+  fontFamily: 'Verdana, Arial, Helvetica, sans-serif',
   color: 'rgb(80,80,80)',
   fontWeight: 'bold',
   minHeight: TABS_HEIGHT,
@@ -31,18 +38,26 @@ const StyledTab = styled((props) => <Tab {...props} />)(() => ({
   borderTop: '1px solid rgb(200,200,200)',
   borderLeft: '1px solid rgb(200,200,200)',
   borderBottom: 'none',
+  '&:hover': {
+    backgroundColor: 'rgba(39,133,88, 0.12)',
+  },
   '&.Mui-selected': {
     color: 'white',
-    backgroundColor: '#36845c',
+    backgroundColor: 'rgb(39, 133, 88) !important',
     border: 'none',
   },
-  '&.Mui-focusVisible': {
-    backgroundColor: 'rgba(100, 95, 228, 0.32)',
+  '@media (max-width: 440px)': {
+    fontSize: '12px'
   },
+  '@media (max-width: 394px)': {
+    fontSize: '10px'
+  }
 }));
 
 export default function Nav() {
   const { navTab, navTabOptions, setNavTab } = useContext(OptionsContext);
+
+  const StyledTabs = makeStyledTabs(window.innerWidth);
 
   return (
     <div className='nav-container'>

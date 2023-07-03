@@ -1,18 +1,6 @@
 import React, { useContext } from 'react';
 
-import Highcharts from 'highcharts';
-import HighchartsReact from 'highcharts-react-official';
-import NoDataToDisplay from 'highcharts/modules/no-data-to-display';
-import accessibility from 'highcharts/modules/accessibility';
-import highchartsMore from 'highcharts/highcharts-more';
-// import exporting from 'highcharts/modules/exporting';
-NoDataToDisplay(Highcharts);
-accessibility(Highcharts);
-highchartsMore(Highcharts);
-// exporting(Highcharts);
-
-import CsvDownloadButton from '../csv-download-button/csv-download-button.component';
-import PdfDownloadButton from '../pdf-download-button/pdf-download-button.component';
+import DownloadBtns from '../download-btns/download-btns.component';
 import CiToggles from '../ci-toggles/ci-toggles.components';
 
 import { DataContext } from '../../contexts/data.context';
@@ -20,6 +8,17 @@ import { OptionsContext } from '../../contexts/options.context';
 
 import './chart.styles.scss';
 import { PdfContext } from '../../contexts/pdf.context';
+
+import Highcharts from 'highcharts';
+import HighchartsReact from 'highcharts-react-official';
+import NoDataToDisplay from 'highcharts/modules/no-data-to-display';
+import accessibility from 'highcharts/modules/accessibility';
+import highchartsMore from 'highcharts/highcharts-more';
+import { CircularProgress } from '@mui/material';
+NoDataToDisplay(Highcharts);
+accessibility(Highcharts);
+highchartsMore(Highcharts);
+
 
 const axesColor = 'rgb(150,150,150)';
 const axesTextColor = 'rgb(100,100,100)';
@@ -50,13 +49,16 @@ const convertToArearangeCoords = (lower, upper) => {
 
 export default function Chart() {
   const { chartRef } = useContext(PdfContext);
-  const { chartData, lastDurationHovered, setLastDurationHovered } =
+  const { chartData, lastDurationHovered, isLoading, setLastDurationHovered } =
     useContext(DataContext);
   const { rcp, returnPeriod, timeFrame, togglesInfo } =
     useContext(OptionsContext);
 
-  if (!chartData)
+  if (isLoading) {
+    return <div className='no-data'><CircularProgress /></div>;
+  } else if (!chartData) {
     return <div className='no-data'>Please select a location to see data.</div>;
+  }
 
   let series = null;
   if (chartData.projectedData) {
@@ -120,6 +122,7 @@ export default function Chart() {
     });
   }
 
+  const parentContainer = document.getElementById('content-container');
   const chartOptions = {
     credits: {
       text: 'Powered by NRCC',
@@ -150,8 +153,8 @@ export default function Chart() {
       },
     },
     chart: {
-      height: 500,
-      width: 600,
+      height: parentContainer.clientHeight,
+      width: window.innerWidth > 829 ? parentContainer.clientWidth - 5 : parentContainer.clientWidth,
       spacing: [13, 0, 0, 0],
       marginLeft: 35,
       marginRight: 4,
@@ -171,7 +174,8 @@ export default function Chart() {
         .split('')
         .join('.')}, ${timeFrame}`,
       style: {
-        fontFamily: "Georgia, 'Times New Roman', Times, serif",
+        fontFamily: 'Verdana, Arial, Helvetica, sans-serif',
+        fontSize: '16px'
       },
     },
     legend: {
@@ -205,7 +209,7 @@ export default function Chart() {
       title: {
         text: 'Depth (in.)',
         style: {
-          fontFamily: "Georgia, 'Times New Roman', Times, serif",
+          fontFamily: 'Verdana, Arial, Helvetica, sans-serif',
           color: axesTextColor,
         },
         margin: 4,
@@ -264,11 +268,9 @@ export default function Chart() {
       />
 
       <div className='chart-buttons-container'>
-        <CsvDownloadButton />
-        <PdfDownloadButton />
+        <DownloadBtns />
+        <CiToggles />
       </div>
-
-      <CiToggles />
     </div>
   );
 }

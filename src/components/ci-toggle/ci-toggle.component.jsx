@@ -16,6 +16,14 @@ export default function CiToggle({
       name={name}
       inputProps={{ 'aria-label': ariaLabel }}
       sx={{
+        '& .MuiSwitch-switchBase': {
+          marginTop: 1.0,
+          padding: 0,
+          transform: 'translateX(8px)',
+          '&.Mui-checked': {
+            transform: 'translateX(28px)'
+          }
+        },
         '& .MuiButtonBase-root': { color: `${color} !important` },
         '& .Mui-checked.Mui-checked + .MuiSwitch-track': {
           backgroundColor: color,

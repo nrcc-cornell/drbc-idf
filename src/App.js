@@ -26,26 +26,17 @@ function App() {
         <Header />
 
         <main id='drb-idf-main-container'>
-          <div className='panel-row'>
+          <div className='top-row'>
             <OptionPanel />
           </div>
 
-          <div className='row-divider' />
-
-          <div className='panel-row middle-row'>
-            <div className='panel-left'>
+          <div className='bottom-row'>
+            <div className='panel'>
               <Legend />
-            </div>
-            <div className='panel-right'>
-              <Nav />
-            </div>
-          </div>
-
-          <div className='panel-row bottom-row'>
-            <div className='panel-left'>
               <MapComponent />
             </div>
-            <div className='panel-right'>
+            <div className='panel'>
+              <Nav />
               <Content />
             </div>
           </div>

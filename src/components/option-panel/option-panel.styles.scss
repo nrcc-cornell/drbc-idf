@@ -3,3 +3,11 @@
   width: 100%;
   justify-content: space-evenly;
 }
+
+@media (max-width: 829px) {
+  .option-panel-container {
+    flex-wrap: wrap;
+    width: 430px;
+    margin: 0px auto 12px;
+  }
+}

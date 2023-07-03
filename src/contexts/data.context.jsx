@@ -126,7 +126,7 @@ const parseAtlas14Data = (text) => {
   return jsonData;
 };
 
-const updateAtlas14Data = async (coords, setChartData) => {
+const updateAtlas14Data = async (coords) => {
   const response = await fetch(
     `https://cors-proxy.benlinux915.workers.dev/atlas14`,
     {
@@ -135,8 +135,7 @@ const updateAtlas14Data = async (coords, setChartData) => {
     }
   );
   const apiText = await response.text();
-  const atlas14Data = parseAtlas14Data(apiText);
-  setChartData(atlas14Data);
+  return parseAtlas14Data(apiText);
 };
 
 const percentileOrder = ['10', '17', '25', 'median', '75', '83', '90'];
@@ -275,6 +274,7 @@ export const DataContext = createContext({
   adjustments: null,
   percentileOrder: [],
   legendColors: [],
+  isLoading: false
 });
 
 // Set up context provider
@@ -292,6 +292,7 @@ export const DataProvider = ({ children }) => {
     'rgba(0,0,0,0)',
   ]);
   const [lastDurationHovered, setLastDurationHovered] = useState(null);
+  const [isLoading, setIsLoading] = useState(0);
   const { selectByOptions, returnPeriod, rcp, timeFrame, togglesInfo } =
     useContext(OptionsContext);
   const { selectedLocation } = useContext(MapContext);
@@ -313,9 +314,14 @@ export const DataProvider = ({ children }) => {
   }, [fileData, returnPeriod, rcp, timeFrame]);
 
   useEffect(() => {
-    if (selectedLocation) {
-      updateAtlas14Data(selectedLocation.coords, setAtlas14Data);
-    }
+    (async () => {
+      if (selectedLocation) {
+        setIsLoading(true);
+        const results = await updateAtlas14Data(selectedLocation.coords);
+        setAtlas14Data(results);
+        setIsLoading(false); 
+      }
+    })();
   }, [selectedLocation]);
 
   useEffect(() => {
@@ -328,7 +334,7 @@ export const DataProvider = ({ children }) => {
         timeFrame,
         selectedLocation
       );
-
+      
       setAdjustments(newAdjustments);
       setChartData({ atlas14Data: atlas14Data[returnPeriod], projectedData });
     }
@@ -347,7 +353,8 @@ export const DataProvider = ({ children }) => {
     adjustments,
     percentileOrder,
     legendColors,
-    exportData: compileTableData(chartData, null, togglesInfo)
+    exportData: compileTableData(chartData, null, togglesInfo),
+    isLoading
   };
   return <DataContext.Provider value={value}>{children}</DataContext.Provider>;
 };

@@ -13,11 +13,11 @@ import { PdfContext } from '../../contexts/pdf.context';
 
 const StyledTableCell = styled(TableCell)({
   [`&.${tableCellClasses.head}`]: {
-    backgroundColor: 'rgba(54,132,92,0.75)',
+    backgroundColor: 'rgb(39, 133, 88)',
     color: 'white',
     fontWeight: 'bold',
     fontSize: 12,
-    fontFamily: "Georgia, 'Times New Roman', Times, serif",
+    fontFamily: 'Verdana, Arial, Helvetica, sans-serif',
     borderRight: '1px solid rgb(200, 200, 200)',
     padding: 0,
   },

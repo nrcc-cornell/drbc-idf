@@ -7,13 +7,15 @@ $labels-width: calc($content-width - 27px);
 .legend-container {
   display: flex;
   flex-direction: column;
-  height: 100%;
+  height: 48px;
+  padding-top: 2px;
+  padding-bottom: 6px;
   align-items: center;
 
   .legend-title {
     font-size: 14px;
     color: rgb(80,80,80);
-    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
     position: relative;
     top: 2px;
   }
