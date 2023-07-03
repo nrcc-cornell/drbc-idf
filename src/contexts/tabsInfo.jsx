@@ -77,8 +77,8 @@ export const tabsInfo = [
 
         <HeadingTypography>Selecting Location</HeadingTypography>
 
-        <ParagraphTypography>Click on the map within a colored region at your desired location. The selected area will be highlighted by an orange border and the map will zoom and/or pan to the selected location. A 'Reset Zoom' button will appear to allow you to return to the original view.</ParagraphTypography>
-        <ParagraphTypography>The tab will automatically change to 'IDF Curve' and will display the IDF curve chart for the area that you selected.</ParagraphTypography>
+        <ParagraphTypography>Click on the map within a colored region at your desired location. The selected area will be highlighted by an orange border and the map will zoom and/or pan to the selected location. A &apos;Reset Zoom&apos; button will appear to allow you to return to the original view.</ParagraphTypography>
+        <ParagraphTypography>The tab will automatically change to &apos;IDF Curve&apos; and will display the IDF curve chart for the area that you selected.</ParagraphTypography>
         <ParagraphTypography>A new table will populate at the bottom of the map and dislay the change factors for the area that you selected.</ParagraphTypography>
 
         <HeadingTypography>Adding Confidence Intervals to the Chart</HeadingTypography>
@@ -87,10 +87,10 @@ export const tabsInfo = [
 
         <HeadingTypography>Downloading Data/Chart</HeadingTypography>
 
-        <ParagraphTypography> Once you have selected a location, go to the 'IDF Curve' tab. Here you will find the download buttons below the chart and left of the confidence interval toggles.</ParagraphTypography>
+        <ParagraphTypography> Once you have selected a location, go to the &apos;IDF Curve&apos; tab. Here you will find the download buttons below the chart and left of the confidence interval toggles.</ParagraphTypography>
         <ParagraphTypography><b>On a large screen:</b> Simply click button for the desired file type to download it.</ParagraphTypography>
         <ParagraphTypography><b>On a small screen:</b> Click the button with the download icon, then click the button for the desired file type to download it.</ParagraphTypography>
-        <ParagraphTypography><b>NOTE:</b> The 'Excel' file will contain data in a table, but will not include the IDF curve chart. The 'PDF' file will contain both the data and the IDF curve chart.</ParagraphTypography>
+        <ParagraphTypography><b>NOTE:</b> The &apos;Excel&apos; file will contain data in a table, but will not include the IDF curve chart. The &apos;PDF&apos; file will contain both the data and the IDF curve chart.</ParagraphTypography>
       </Box>
   },
   {
