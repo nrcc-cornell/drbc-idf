@@ -8,11 +8,6 @@ import React, {
 import PropTypes from 'prop-types';
 import { centroid } from '@turf/turf';
 
-////////////////////////////////////////////////////
-// Can uninstall turf if this isnt needed!!!!!!!!
-// import bbox from '@turf/bbox';
-////////////////////////////////////////////////////
-
 import { OptionsContext } from './options.context';
 
 import config from './config.json';
