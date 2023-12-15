@@ -15,8 +15,7 @@ import LocationInfo from '../location-info/location-info.component';
 import './map.styles.scss';
 
 // Set token for mapbox API
-mapboxgl.accessToken =
-  'pk.eyJ1IjoiaWRmY3VydmV0b29sYWRtaW4iLCJhIjoiY2xkdGE0M3hpMDhpYzNxcGM1dm9yYjk5YyJ9.i1-mSRRpL-fw0mUBY4o_6A';
+mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_KEY;
 
 // eslint-disable-next-line import/no-webpack-loader-syntax
 mapboxgl.workerClass = require('worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker').default;
