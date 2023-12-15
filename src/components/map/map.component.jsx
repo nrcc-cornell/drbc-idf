@@ -16,8 +16,7 @@ import './map.styles.scss';
 
 // Set token for mapbox API
 mapboxgl.accessToken =
-  // 'pk.eyJ1IjoiaWRmY3VydmV0b29sYWRtaW4iLCJhIjoiY2xkdGE0M3hpMDhpYzNxcGM1dm9yYjk5YyJ9.i1-mSRRpL-fw0mUBY4o_6A';
-  'pk.eyJ1IjoiaWRmY3VydmV0b29sYWRtaW4iLCJhIjoiY2xkdGFmZTd4MDJ3ZDNxb3h5dXdrb3cwbSJ9.-57RGzVhzLpxzp2WsX9xDQ';
+  'pk.eyJ1IjoiaWRmY3VydmV0b29sYWRtaW4iLCJhIjoiY2xkdGE0M3hpMDhpYzNxcGM1dm9yYjk5YyJ9.i1-mSRRpL-fw0mUBY4o_6A';
 
 // eslint-disable-next-line import/no-webpack-loader-syntax
 mapboxgl.workerClass = require('worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker').default;
