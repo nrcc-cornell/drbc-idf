@@ -68,7 +68,7 @@ export const MapProvider = ({ children }) => {
     if (mapRef.current) {
       mapRef.current.on('render', afterChangeComplete);
     }
-  }, [mapRef.current, selectByOptions]);
+  }, [mapRef.current, selectByOptions]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const afterChangeComplete = () => {
     if (!mapRef.current.loaded() || !selectedLocation) return;
