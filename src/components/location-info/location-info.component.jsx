@@ -70,7 +70,7 @@ export default function LocationInfo({ hovered }) {
                 },
               }}
             >
-              Change factors by Percentile for {capitalize(selectBy)}:{' '}
+              Change Factors by Percentile for {capitalize(selectBy)}:{' '}
               {selectedLocation.name}, {selectedLocation.state_abbr}
             </StyledTableCell>
           </TableRow>

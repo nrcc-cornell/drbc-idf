@@ -60,6 +60,10 @@ export const tabsInfo = [
     "contentType": "normal",
     "content": 
       <Box key='user-guide' sx={{ padding: '8px' }}>
+        <HeadingTypography>Introduction</HeadingTypography>
+        
+        <ParagraphTypography>This site was designed to identify estimates of projected changes in extreme rainfall in the Delaware River Basin. Through the interactive tool, users can see estimated Intensity-Duration-Frequency (IDF) curves for a 24-hour duration, based on changing four factors: 1) county, local or watershed (HUC 12) scale; 2) low or high emission scenarios; 3) current or future time period; and 4) annual exceedance probability (frequency of exceedance). By sharing this information in a user-friendly tool, the DRBC is providing local officials, policymakers, planners, and developers, as well as Basin residents, with science-based knowledge to understand expected climate-induced precipitation changes and inform adaptation decisions.</ParagraphTypography>
+
         <HeadingTypography>Choosing Options</HeadingTypography>
 
         <ParagraphTypography>The map will automatically update after any option is changed.</ParagraphTypography>
@@ -162,6 +166,7 @@ export const tabsInfo = [
         <ParagraphTypography>In the final step, the uncertainty of the CFs was quantified. At each 0.1° grid point an ensemble of 47,000 CFs was available for each recurrence interval under RCP8.5 (47 models; 31 LOCA and 16 CORDEX x 1000 resamples) and 40,000 CFs existed under RCP4.5. From this ensemble the median CF factor was obtained as were the 17th, 25th, 75th and 83rd percentiles. The 17th and 83rd percentiles were selected to represent a likely range (Mastrandrea et al. 2010) of projections around the median.</ParagraphTypography>
 
         <HeadingTypography>Download</HeadingTypography>
+        <ParagraphTypography>This projection tool developed for the Delaware River Basin is based upon the same methods used by the Northeast Regional Climate Center in studies conducted in partnership with the New Jersey Department of Environmental Protection (NJDEP). The link to the full report for that project can be downloaded here.</ParagraphTypography>
 
         <a
           href={`${process.env.PUBLIC_URL}/assets/projected-changes-rainfall-model.pdf`}
@@ -173,7 +178,7 @@ export const tabsInfo = [
         >
           <Button buttonType='textPdf'>
             <InsertChartIcon />
-            Full Report PDF (22.3MB)
+            Full NJDEP Report PDF (22.3MB)
           </Button>
         </a>
 

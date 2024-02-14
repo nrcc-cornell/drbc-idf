@@ -63,7 +63,7 @@ const addFooterText = (pageType, pdf, maxWidth) => {
   pdf.rect(maxWidth - 93.5, offsetHeight + 1, 44.5, 3, 'F');
 
   pdf.link(maxWidth - 60, offsetHeight - 2.2, 8, 3, { url: window.location.href });
-  pdf.link(5, offsetHeight + 1, 44.8, 3, { url: 'https:/www.nrcc.cornell.edu/' });
+  pdf.link(5, offsetHeight + 1, 44.8, 3, { url: 'https://www.nrcc.cornell.edu/' });
   pdf.link(maxWidth - 93.5, offsetHeight + 1, 44.5, 3, { url: 'https://www.nj.gov/drbc/' });
   
   pdf.setFont('helvetica', '', 'normal');
