@@ -61,7 +61,9 @@ export default function Chart() {
   }
 
   let series = null;
+  let yMax = 0;
   if (chartData.projectedData) {
+    yMax = chartData.yMax;
     series = [
       {
         id: 'projected',
@@ -222,6 +224,7 @@ export default function Chart() {
       lineWidth: 1,
       lineColor: axesColor,
       endOnTick: false,
+      max: yMax
     },
     tooltip: {
       shared: true,
