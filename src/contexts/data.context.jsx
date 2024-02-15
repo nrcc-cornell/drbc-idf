@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import JSZip from 'jszip';
 import JSZipUtils from 'jszip-utils';
 
+import config from './config.json';
+
 import { OptionsContext } from './options.context';
 import { MapContext } from './map.context';
 
@@ -139,35 +141,6 @@ const updateAtlas14Data = async (coords) => {
 };
 
 const percentileOrder = ['10', '17', '25', 'median', '75', '83', '90'];
-const calculateProjectedData = (
-  atlas14Data,
-  fileData,
-  returnPeriod,
-  rcp,
-  timeFrame,
-  selectedLocation
-) => {
-  const locationObj = fileData.find((loc) => loc.id === selectedLocation.id);
-  if (!locationObj) {
-    return { newAdjustments: null, projectedData: null };
-  }
-
-  const adjustments = getNearest(locationObj)[rcp][timeFrame][returnPeriod];
-  const atlas14Median = atlas14Data[returnPeriod].median;
-
-  return {
-    newAdjustments: adjustments,
-    projectedData: atlas14Median.reduce(
-      (acc, aValue) => {
-        adjustments.forEach((adj, i) => {
-          acc[percentileOrder[i]].push(Math.round(aValue * adj * 100) / 100);
-        });
-        return acc;
-      },
-      { 10: [], 17: [], 25: [], median: [], 75: [], 83: [], 90: [] }
-    ),
-  };
-};
 
 const compileTableData = (chartData, hoveredData, togglesInfo) => {
   if (!chartData || !chartData.projectedData) return null;
@@ -264,6 +237,18 @@ const compileTableData = (chartData, hoveredData, togglesInfo) => {
   ];
 };
 
+const findMax = (obj, initMax=0) => {
+  return Object.values(obj).reduce((max, val) => {
+    if (Array.isArray(val)) {
+      return Math.max(max, ...val);
+    } else if (typeof val === 'object' && val !== null) {
+      return findMax(val);
+    } else {
+      throw new Error('Invalid data type');
+    }
+  }, initMax);
+};
+
 // Set up initial state of context
 export const DataContext = createContext({
   legendData: {},
@@ -282,7 +267,9 @@ export const DataProvider = ({ children }) => {
   const [fileData, setFileData] = useState([]);
   const [atlas14Data, setAtlas14Data] = useState(null);
   const [chartData, setChartData] = useState(null);
+  const [yMax, setYMax] = useState(0);
   const [tableData, setTableData] = useState(null);
+  const [projectedData, setProjectedData] = useState(null);
   const [adjustments, setAdjustments] = useState(null);
   const [mapColors, setMapColors] = useState([
     'match',
@@ -300,6 +287,46 @@ export const DataProvider = ({ children }) => {
   useEffect(() => {
     loadDataFile(selectByOptions.value, setFileData);
   }, [selectByOptions]);
+
+  useEffect(() => {
+    if (atlas14Data && fileData.length && selectedLocation) {
+      const locationObj = fileData.find((loc) => loc.id === selectedLocation.id);
+      if (locationObj) {
+        const newAdjustments = getNearest(locationObj);
+        
+        const newProjectedData = {};
+        for (const rcp of config.rcp.options.map(obj => obj.value)) {
+          newProjectedData[rcp] = {};
+  
+          for (const timeFrame of config.timeFrame.options.map(obj => obj.value)) {
+            newProjectedData[rcp][timeFrame] = {};
+            for (const returnPeriod in atlas14Data) {
+              const atlas14Median = atlas14Data[returnPeriod].median;
+              const scenarioAdjustments = newAdjustments[rcp][timeFrame][returnPeriod];
+              
+              newProjectedData[rcp][timeFrame][returnPeriod] = atlas14Median.reduce(
+                (acc, aValue) => {
+                  scenarioAdjustments.forEach((adj, i) => {
+                    acc[percentileOrder[i]].push(Math.round(aValue * adj * 100) / 100);
+                  });
+                  return acc;
+                },
+                { 10: [], 17: [], 25: [], median: [], 75: [], 83: [], 90: [] }
+              );
+            }
+          }
+        }
+      
+        setAdjustments(newAdjustments);
+        setProjectedData(newProjectedData);
+        setYMax(findMax({ atlas14Data, newProjectedData }));
+      } else {
+        setAdjustments(null);
+        setProjectedData(null);
+        setYMax(0);
+      }
+    }
+  }, [fileData, selectedLocation, atlas14Data]);
 
   useEffect(() => {
     const colors = calculateColors(
@@ -325,20 +352,10 @@ export const DataProvider = ({ children }) => {
   }, [selectedLocation]);
 
   useEffect(() => {
-    if (atlas14Data && fileData.length && selectedLocation) {
-      const { newAdjustments, projectedData } = calculateProjectedData(
-        atlas14Data,
-        fileData,
-        returnPeriod,
-        rcp,
-        timeFrame,
-        selectedLocation
-      );
-      
-      setAdjustments(newAdjustments);
-      setChartData({ atlas14Data: atlas14Data[returnPeriod], projectedData });
+    if (atlas14Data && projectedData) {
+      setChartData({ atlas14Data: atlas14Data[returnPeriod], projectedData: projectedData[rcp][timeFrame][returnPeriod], yMax: yMax });
     }
-  }, [fileData, returnPeriod, rcp, timeFrame, selectedLocation, atlas14Data]);
+  }, [returnPeriod, rcp, timeFrame, projectedData, atlas14Data, yMax]);
 
   useEffect(() => {
     setTableData(compileTableData(chartData, lastDurationHovered, togglesInfo));
@@ -350,7 +367,7 @@ export const DataProvider = ({ children }) => {
     lastDurationHovered,
     setLastDurationHovered,
     tableData,
-    adjustments,
+    adjustments: adjustments ? adjustments[rcp][timeFrame][returnPeriod] : null,
     percentileOrder,
     legendColors,
     exportData: compileTableData(chartData, null, togglesInfo),
