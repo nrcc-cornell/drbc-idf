@@ -224,6 +224,7 @@ export default function Chart() {
       lineWidth: 1,
       lineColor: axesColor,
       endOnTick: false,
+      min: 0,
       max: yMax
     },
     tooltip: {
