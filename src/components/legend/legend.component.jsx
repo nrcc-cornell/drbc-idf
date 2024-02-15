@@ -39,7 +39,7 @@ export default function Legend() {
 
   return (
     <div className='legend-container'>
-      <div className='legend-title'>Change Factor (Percentile)</div>
+      <div className='legend-title'>Change Factor</div>
       <div className='legend'>
         <div className='legend-labels'>{labels}</div>
         <div className='legend-color-squares'>{colorSquares}</div>
