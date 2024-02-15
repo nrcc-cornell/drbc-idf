@@ -2,7 +2,7 @@
   "name": "drb-idf",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://pages.github.coecis.cornell.edu/be99/drb-idf/",
+  "homepage": "https://drbc-idf.rcc-acis.org/",
   "dependencies": {
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
