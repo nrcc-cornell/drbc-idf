@@ -2,12 +2,12 @@
   display: flex;
   width: 100%;
   justify-content: space-evenly;
+  flex-wrap: wrap;
+  gap: 2px;
 }
 
-@media (max-width: 829px) {
+@media (max-width: 900px) {
   .option-panel-container {
-    flex-wrap: wrap;
-    width: 430px;
     margin: 0px auto 12px;
   }
 }

@@ -12,7 +12,7 @@ import Button from '../../button/button.component';
 export default function ExcelDownloadButton() {
   const { exportData, adjustments, percentileOrder } = useContext(DataContext);
   const { selectedLocation } = useContext(MapContext);
-  const { selectByOptions, returnPeriod, rcp, timeFrame } =
+  const { selectByOptions, returnPeriod, scenario, timeFrame } =
     useContext(OptionsContext);
 
   const handleExcelDownload = async () => {
@@ -51,7 +51,7 @@ export default function ExcelDownloadButton() {
       [{value: `${selectByOptions.text} of Selection:`}, {value: selectedLocation.name}],
       [{value: 'State of Selection:'}, {value: selectedLocation.state_abbr}],
       [{value: 'Annual Exceedance Probability:'}, {value: `${100 / parseInt(returnPeriod)}%`}],
-      [{value: 'Emission Scenario:'}, {value: rcp.split('').join('.')}],
+      [{value: 'Emission Scenario:'}, {value: scenario.length === 2 ? scenario.split('').join('.') : scenario.toUpperCase()}],
       [{value: 'Time Period:'}, {value: timeFrame}],
       [null],
       [null],

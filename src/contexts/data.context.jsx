@@ -1,25 +1,23 @@
 import React, { createContext, useState, useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
-import JSZip from 'jszip';
+import JSZip, { file } from 'jszip';
 import JSZipUtils from 'jszip-utils';
-
-import config from './config.json';
 
 import { OptionsContext } from './options.context';
 import { MapContext } from './map.context';
 
 import legendColors from './legendColors.json';
 
-const loadDataFile = (selectBy, setFunction) => {
+const loadDataFile = (method, selectBy, setFunction) => {
   JSZipUtils.getBinaryContent(
-    `${process.env.PUBLIC_URL}/data/${selectBy}_adjustments.zip`,
+    `${process.env.PUBLIC_URL}/data/${method}_${selectBy}_adjustments.zip`,
     async (err, data) => {
       if (err) {
         return [];
       }
       const jsZip = new JSZip();
       const bData = await jsZip.loadAsync(data);
-      const tData = await bData.files[`${selectBy}_adjustments.json`].async(
+      const tData = await bData.files[`${method}_${selectBy}_adjustments.json`].async(
         'text'
       );
       setFunction(JSON.parse(tData));
@@ -38,21 +36,25 @@ const valueToColor = (value, legendColors) => {
 
 const getNearest = (locationObj) => {
   let value;
-  if (
-    locationObj.nearest_gridpoint.nj.distance <=
-    locationObj.nearest_gridpoint.drb.distance
-  ) {
-    try {
-      value = locationObj.nearest_gridpoint.nj.data;
-    } catch {
-      value = locationObj.nearest_gridpoint.drb.data;
+  if ('nearest_gridpoint' in locationObj) {
+    if (
+      locationObj.nearest_gridpoint.nj.distance <=
+      locationObj.nearest_gridpoint.drb.distance
+    ) {
+      try {
+        value = locationObj.nearest_gridpoint.nj.data;
+      } catch {
+        value = locationObj.nearest_gridpoint.drb.data;
+      }
+    } else {
+      try {
+        value = locationObj.nearest_gridpoint.drb.data;
+      } catch {
+        value = locationObj.nearest_gridpoint.nj.data;
+      }
     }
   } else {
-    try {
-      value = locationObj.nearest_gridpoint.drb.data;
-    } catch {
-      value = locationObj.nearest_gridpoint.nj.data;
-    }
+    value = locationObj.data;
   }
   return value;
 };
@@ -60,15 +62,15 @@ const getNearest = (locationObj) => {
 const calculateColors = (
   fileData,
   returnPeriod,
-  rcp,
+  scenario,
   timeFrame,
   legendColors
 ) => {
   const locVals = fileData.reduce((acc, locationObj) => {
     const id = locationObj.id;
     const value = getNearest(locationObj);
-    if (value[rcp][timeFrame]) {
-      acc.push([id, value[rcp][timeFrame][returnPeriod][3]]);
+    if (value[scenario][timeFrame]) {
+      acc.push([id, value[scenario][timeFrame][returnPeriod][3]]);
     }
     return acc;
   }, []);
@@ -280,13 +282,13 @@ export const DataProvider = ({ children }) => {
   ]);
   const [lastDurationHovered, setLastDurationHovered] = useState(null);
   const [isLoading, setIsLoading] = useState(0);
-  const { selectByOptions, returnPeriod, rcp, timeFrame, togglesInfo } =
+  const { method, selectByOptions, returnPeriod, scenario, timeFrame, togglesInfo } =
     useContext(OptionsContext);
   const { selectedLocation } = useContext(MapContext);
 
   useEffect(() => {
-    loadDataFile(selectByOptions.value, setFileData);
-  }, [selectByOptions]);
+    loadDataFile(method, selectByOptions.value, setFileData);
+  }, [method, selectByOptions]);
 
   useEffect(() => {
     if (atlas14Data && fileData.length && selectedLocation) {
@@ -295,16 +297,16 @@ export const DataProvider = ({ children }) => {
         const newAdjustments = getNearest(locationObj);
         
         const newProjectedData = {};
-        for (const rcp of config.rcp.options.map(obj => obj.value)) {
-          newProjectedData[rcp] = {};
+        for (const scenario of Object.keys(newAdjustments)) {
+          newProjectedData[scenario] = {};
   
-          for (const timeFrame of config.timeFrame.options.map(obj => obj.value)) {
-            newProjectedData[rcp][timeFrame] = {};
+          for (const timeFrame of Object.keys(newAdjustments[scenario])) {
+            newProjectedData[scenario][timeFrame] = {};
             for (const returnPeriod in atlas14Data) {
               const atlas14Median = atlas14Data[returnPeriod].median;
-              const scenarioAdjustments = newAdjustments[rcp][timeFrame][returnPeriod];
+              const scenarioAdjustments = newAdjustments[scenario][timeFrame][returnPeriod];
               
-              newProjectedData[rcp][timeFrame][returnPeriod] = atlas14Median.reduce(
+              newProjectedData[scenario][timeFrame][returnPeriod] = atlas14Median.reduce(
                 (acc, aValue) => {
                   scenarioAdjustments.forEach((adj, i) => {
                     acc[percentileOrder[i]].push(Math.round(aValue * adj * 100) / 100);
@@ -329,16 +331,18 @@ export const DataProvider = ({ children }) => {
   }, [fileData, selectedLocation, atlas14Data]);
 
   useEffect(() => {
-    const colors = calculateColors(
-      fileData,
-      returnPeriod,
-      rcp,
-      timeFrame,
-      legendColors
-    );
-
-    if (colors.length > 3) setMapColors(colors);
-  }, [fileData, returnPeriod, rcp, timeFrame]);
+    if (fileData.length && ((!scenario.includes('ssp') && Object.keys(fileData[0]).includes('nearest_gridpoint')) || (scenario.includes('ssp') && Object.keys(fileData[0]).includes('data')))) {
+      const colors = calculateColors(
+        fileData,
+        returnPeriod,
+        scenario,
+        timeFrame,
+        legendColors
+      );
+  
+      if (colors.length > 3) setMapColors(colors);
+    }
+  }, [fileData, returnPeriod, scenario, timeFrame]);
 
   useEffect(() => {
     (async () => {
@@ -352,10 +356,10 @@ export const DataProvider = ({ children }) => {
   }, [selectedLocation]);
 
   useEffect(() => {
-    if (atlas14Data && projectedData) {
-      setChartData({ atlas14Data: atlas14Data[returnPeriod], projectedData: projectedData[rcp][timeFrame][returnPeriod], yMax: yMax });
+    if (atlas14Data && projectedData && Object.keys(projectedData).includes(scenario) && Object.keys(projectedData[scenario]).includes(timeFrame)) {
+      setChartData({ atlas14Data: atlas14Data[returnPeriod], projectedData: projectedData[scenario][timeFrame][returnPeriod], yMax: yMax });
     }
-  }, [returnPeriod, rcp, timeFrame, projectedData, atlas14Data, yMax]);
+  }, [returnPeriod, scenario, timeFrame, projectedData, atlas14Data, yMax]);
 
   useEffect(() => {
     setTableData(compileTableData(chartData, lastDurationHovered, togglesInfo));
@@ -367,7 +371,7 @@ export const DataProvider = ({ children }) => {
     lastDurationHovered,
     setLastDurationHovered,
     tableData,
-    adjustments: adjustments ? adjustments[rcp][timeFrame][returnPeriod] : null,
+    adjustments: (adjustments && Object.keys(adjustments).includes(scenario) && Object.keys(adjustments[scenario]).includes(timeFrame)) ? adjustments[scenario][timeFrame][returnPeriod] : null,
     percentileOrder,
     legendColors,
     exportData: compileTableData(chartData, null, togglesInfo),

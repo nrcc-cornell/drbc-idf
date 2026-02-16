@@ -51,7 +51,7 @@ export default function Chart() {
   const { chartRef } = useContext(PdfContext);
   const { chartData, lastDurationHovered, isLoading, setLastDurationHovered } =
     useContext(DataContext);
-  const { rcp, returnPeriod, timeFrame, togglesInfo } =
+  const { scenario, returnPeriod, timeFrame, togglesInfo } =
     useContext(OptionsContext);
 
   if (isLoading) {
@@ -124,6 +124,8 @@ export default function Chart() {
     });
   }
 
+  const scenarioName = scenario.length === 2 ? `RCP ${scenario.split('').join('.')}` : `SSP ${scenario.slice(3)}`
+
   const parentContainer = document.getElementById('content-container');
   const chartOptions = {
     credits: {
@@ -172,9 +174,7 @@ export default function Chart() {
       },
     },
     title: {
-      text: `IDF Curve: ${100 / parseInt(returnPeriod)}% Annual Exceedance Probability Under RCP ${rcp
-        .split('')
-        .join('.')}, ${timeFrame}`,
+      text: `IDF Curve: ${100 / parseInt(returnPeriod)}% Annual Exceedance Probability Under ${scenarioName}, ${timeFrame}`,
       style: {
         fontFamily: 'Verdana, Arial, Helvetica, sans-serif',
         fontSize: '16px'

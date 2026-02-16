@@ -1,4 +1,19 @@
 {
+  "method": {
+    "name": "Method",
+    "options": [
+      {
+        "value": "loca",
+        "ariaLabel": "LOCA method",
+        "text": "LOCA"
+      },
+      {
+        "value": "loca2",
+        "ariaLabel": "LOCA2 method",
+        "text": "LOCA2"
+      }
+    ]
+  },
   "selectBy": {
     "name": "Select By",
     "options": [
@@ -69,7 +84,7 @@
       }
     ]
   },
-  "rcp": {
+  "locarcp": {
     "name": "Emission Scenario",
     "options": [
       {
@@ -81,6 +96,26 @@
         "value": "85",
         "ariaLabel": "high emission scenario RCP 8.5",
         "text": "High RCP 8.5"
+      }
+    ]
+  },
+  "loca2ssp": {
+    "name": "Emission Scenario",
+    "options": [
+      {
+        "value": "ssp245",
+        "ariaLabel": "low emission scenario SSP 245",
+        "text": "Low SSP 245"
+      },
+      {
+        "value": "ssp370",
+        "ariaLabel": "medium emission scenario SSP 370",
+        "text": "Medium SSP 370"
+      },
+      {
+        "value": "ssp585",
+        "ariaLabel": "high emission scenario SSP 585",
+        "text": "High SSP 585"
       }
     ]
   },
@@ -96,6 +131,21 @@
         "value": "2050-2099",
         "ariaLabel": "time period 2050-2099",
         "text": "2050-2099"
+      }
+    ]
+  },
+  "loca2TimeFrame": {
+    "name": "Time Period",
+    "options": [
+      {
+        "value": "2020-2069",
+        "ariaLabel": "time period 2020-2069",
+        "text": "2020-2069"
+      },
+      {
+        "value": "2050-2100",
+        "ariaLabel": "time period 2050-2100",
+        "text": "2050-2100"
       }
     ]
   }
