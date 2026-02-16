@@ -1,6 +1,6 @@
 import React, { createContext, useState, useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
-import JSZip, { file } from 'jszip';
+import JSZip from 'jszip';
 import JSZipUtils from 'jszip-utils';
 
 import { OptionsContext } from './options.context';
