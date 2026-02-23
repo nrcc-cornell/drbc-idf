@@ -32,9 +32,20 @@ export const OptionsProvider = ({ children }) => {
   const [rcp, setRcp] = useState(config.locarcp.options[0].value);
   const [ssp, setSsp] = useState(config.loca2ssp.options[0].value);
   const [timeFrame, setTimeFrame] = useState(config.timeFrame.options[0].value);
-  const [loca2TimeFrame, setLoca2TimeFrame] = useState(config.loca2TimeFrame.options[0].value);
   const [navTab, setNavTab] = useState(0);
   const [togglesInfo, setTogglesInfo] = useState(togglesConfig);
+
+  const changeScenario = (newScenario) => {
+    if (newScenario === config.locarcp.options[0].value || newScenario === config.loca2ssp.options[0].value) {
+      setRcp(config.locarcp.options[0].value);
+      setSsp(config.loca2ssp.options[0].value);
+    } else if (newScenario === config.locarcp.options[1].value || newScenario === config.loca2ssp.options[2].value) {
+      setRcp(config.locarcp.options[1].value);
+      setSsp(config.loca2ssp.options[2].value);
+    } else if (newScenario === config.loca2ssp.options[1].value) {
+      setSsp(config.loca2ssp.options[1].value);
+    }
+  };
 
   const selectors = [
     {
@@ -52,7 +63,7 @@ export const OptionsProvider = ({ children }) => {
     {
       label: config.locarcp.name,
       currentValue: rcp,
-      setFunction: setRcp,
+      setFunction: changeScenario,
       optionsArray: config.locarcp.options,
     },
     {
@@ -72,14 +83,8 @@ export const OptionsProvider = ({ children }) => {
     selectors[2] = {
       label: config.loca2ssp.name,
       currentValue: ssp,
-      setFunction: setSsp,
+      setFunction: changeScenario,
       optionsArray: config.loca2ssp.options,
-    }
-    selectors[3] = {
-      label: config.loca2TimeFrame.name,
-      currentValue: loca2TimeFrame,
-      setFunction: setLoca2TimeFrame,
-      optionsArray: config.loca2TimeFrame.options,
     }
   }
 
@@ -98,7 +103,7 @@ export const OptionsProvider = ({ children }) => {
     ),
     returnPeriod,
     scenario: method === 'loca' ? rcp : ssp,
-    timeFrame: method === 'loca' ? timeFrame : loca2TimeFrame,
+    timeFrame,
     navTab,
     setNavTab,
     navTabOptions: tabsInfo.map((tabInfo) => tabInfo.name),

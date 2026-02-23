@@ -3,14 +3,14 @@
     "name": "Method",
     "options": [
       {
-        "value": "loca",
-        "ariaLabel": "LOCA method",
-        "text": "LOCA"
+        "value": "loca2",
+        "ariaLabel": "CMIP6",
+        "text": "CMIP6"
       },
       {
-        "value": "loca2",
-        "ariaLabel": "LOCA2 method",
-        "text": "LOCA2"
+        "value": "loca",
+        "ariaLabel": "CMIP5",
+        "text": "CMIP5"
       }
     ]
   },
@@ -131,21 +131,6 @@
         "value": "2050-2099",
         "ariaLabel": "time period 2050-2099",
         "text": "2050-2099"
-      }
-    ]
-  },
-  "loca2TimeFrame": {
-    "name": "Time Period",
-    "options": [
-      {
-        "value": "2020-2069",
-        "ariaLabel": "time period 2020-2069",
-        "text": "2020-2069"
-      },
-      {
-        "value": "2050-2100",
-        "ariaLabel": "time period 2050-2100",
-        "text": "2050-2100"
       }
     ]
   }
