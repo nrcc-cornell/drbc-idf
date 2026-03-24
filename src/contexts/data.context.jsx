@@ -331,7 +331,14 @@ export const DataProvider = ({ children }) => {
   }, [fileData, selectedLocation, atlas14Data]);
 
   useEffect(() => {
-    if (fileData.length && ((!scenario.includes('ssp') && Object.keys(fileData[0]).includes('nearest_gridpoint')) || (scenario.includes('ssp') && Object.keys(fileData[0]).includes('data')))) {
+    if (
+      fileData.length &&
+      (
+        (!scenario.includes('ssp') && Object.keys(fileData[0]).includes('nearest_gridpoint')) ||
+        (!scenario.includes('ssp') && Object.keys(fileData[0]).includes('data') && Object.keys(fileData[0]['data']).includes('45')) ||
+        (scenario.includes('ssp') && Object.keys(fileData[0]).includes('data') && !Object.keys(fileData[0]['data']).includes('45'))
+      )
+    ) {
       const colors = calculateColors(
         fileData,
         returnPeriod,

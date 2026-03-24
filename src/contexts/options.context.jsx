@@ -102,7 +102,7 @@ export const OptionsProvider = ({ children }) => {
       (opt) => opt.value === selectBy
     ),
     returnPeriod,
-    scenario: method === 'loca' ? rcp : ssp,
+    scenario: method === 'loca2' ? ssp: rcp,
     timeFrame,
     navTab,
     setNavTab,

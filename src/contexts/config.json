@@ -9,8 +9,13 @@
       },
       {
         "value": "loca",
-        "ariaLabel": "CMIP5",
-        "text": "CMIP5"
+        "ariaLabel": "Old CMIP5",
+        "text": "Old CMIP5"
+      },
+      {
+        "value": "new_loca",
+        "ariaLabel": "New CMIP5",
+        "text": "New CMIP5"
       }
     ]
   },
