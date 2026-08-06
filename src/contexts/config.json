@@ -1,6 +1,6 @@
 {
   "method": {
-    "name": "Method",
+    "name": "Climate Model Generation",
     "options": [
       {
         "value": "loca2",
@@ -9,13 +9,8 @@
       },
       {
         "value": "loca",
-        "ariaLabel": "Old CMIP5",
-        "text": "Old CMIP5"
-      },
-      {
-        "value": "new_loca",
-        "ariaLabel": "New CMIP5",
-        "text": "New CMIP5"
+        "ariaLabel": "CMIP5",
+        "text": "CMIP5"
       }
     ]
   },
@@ -109,18 +104,18 @@
     "options": [
       {
         "value": "ssp245",
-        "ariaLabel": "low emission scenario SSP 245",
-        "text": "Low SSP 245"
+        "ariaLabel": "intermediate emission scenario SSP2-4.5",
+        "text": "Intermediate SSP2-4.5"
       },
       {
         "value": "ssp370",
-        "ariaLabel": "medium emission scenario SSP 370",
-        "text": "Medium SSP 370"
+        "ariaLabel": "high emission scenario SSP3-7.0",
+        "text": "High SSP3-7.0"
       },
       {
         "value": "ssp585",
-        "ariaLabel": "high emission scenario SSP 585",
-        "text": "High SSP 585"
+        "ariaLabel": "very high emission scenario SSP5-8.5",
+        "text": "Very High SSP5-8.5"
       }
     ]
   },

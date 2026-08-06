@@ -1,7 +1,7 @@
 [
   {
-    "name": "Atlas 14 Confidence Intervals",
-    "ariaLabel": "Atlas 14 Confidence Intervals",
+    "name": "Atlas 14 Confidence Interval",
+    "ariaLabel": "Atlas 14 Confidence Interval",
     "color": "#74bf74",
     "checked": false,
     "linkedTo": "atlas14",
@@ -10,8 +10,8 @@
     "tableHeadings": ["10", "Median", "90"]
   },
   {
-    "name": "Projected 75% Confidence Intervals",
-    "ariaLabel": "Projected 75% Confidence Intervals",
+    "name": "Projected 75% Confidence Interval",
+    "ariaLabel": "Projected 75% Confidence Interval",
     "color": "#768ec0",
     "checked": false,
     "linkedTo": "projected",
@@ -20,8 +20,8 @@
     "tableHeadings": ["25", "75"]
   },
   {
-    "name": "Projected 83% Confidence Intervals",
-    "ariaLabel": "Projected 83% Confidence Intervals",
+    "name": "Projected 83% Confidence Interval",
+    "ariaLabel": "Projected 83% Confidence Interval",
     "color": "#a4b5dd",
     "checked": false,
     "linkedTo": "projected",
@@ -30,8 +30,8 @@
     "tableHeadings": ["17", "83"]
   },
   {
-    "name": "Projected 90% Confidence Intervals",
-    "ariaLabel": "Projected 90% Confidence Intervals",
+    "name": "Projected 90% Confidence Interval",
+    "ariaLabel": "Projected 90% Confidence Interval",
     "color": "#d3dafa",
     "checked": false,
     "linkedTo": "projected",

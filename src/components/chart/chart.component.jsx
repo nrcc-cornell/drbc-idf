@@ -5,6 +5,7 @@ import CiToggles from '../ci-toggles/ci-toggles.components';
 
 import { DataContext } from '../../contexts/data.context';
 import { OptionsContext } from '../../contexts/options.context';
+import { MapContext } from '../../contexts/map.context';
 
 import './chart.styles.scss';
 import { PdfContext } from '../../contexts/pdf.context';
@@ -48,6 +49,7 @@ const convertToArearangeCoords = (lower, upper) => {
 };
 
 export default function Chart() {
+  const { selectedLocation } = useContext(MapContext);
   const { chartRef } = useContext(PdfContext);
   const { chartData, lastDurationHovered, isLoading, setLastDurationHovered } =
     useContext(DataContext);
@@ -113,18 +115,19 @@ export default function Chart() {
         }
 
         series.push({
-          name: toggle.name + ' Upper',
+          name: toggle.name,
           linkedTo: toggle.linkedTo,
           type: 'arearange',
           color: toggle.color,
           data: convertToArearangeCoords(lower, upper),
           zIndex,
+          showInLegend: true
         });
       }
     });
   }
 
-  const scenarioName = scenario.length === 2 ? `RCP ${scenario.split('').join('.')}` : `SSP ${scenario.slice(3)}`
+  const scenarioName = scenario.length === 2 ? `RCP ${scenario.split('').join('.')}` : `SSP${scenario.slice(3,4)}-${scenario.slice(4,5)}.${scenario.slice(5,6)}`
 
   const parentContainer = document.getElementById('content-container');
   const chartOptions = {
@@ -180,16 +183,32 @@ export default function Chart() {
         fontSize: '16px'
       },
     },
+    subtitle: {
+      text: `${selectedLocation.name}, ${selectedLocation.state_abbr}`
+    },
     legend: {
-      align: 'right',
+      align: 'left',
+      verticalAlign: 'top',
       floating: true,
       layout: 'vertical',
-      y: -90,
+      y: 30,
+      x: 30
     },
     xAxis: {
       endOnTick: true,
       startOnTick: true,
       tickPositions: xLabels.map((arr) => arr[1]),
+      title: {
+        text: '(Duration)',
+        textAlign: 'right',
+        align: 'high',
+        x: -30,
+        y: -30,
+        style: {
+          color: 'rgb(180,180,180)',
+          fontStyle: 'italic'
+        }
+      },
       labels: {
         style: {
           fontFamily: 'Verdana, Arial, Helvetica, sans-serif',

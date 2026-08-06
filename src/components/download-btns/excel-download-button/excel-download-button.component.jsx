@@ -16,12 +16,10 @@ export default function ExcelDownloadButton() {
     useContext(OptionsContext);
 
   const handleExcelDownload = async () => {
-    const numEmptyAroundProj = Array(
-      exportData[0].findIndex((val) => val === 'Median') - 1
-    ).fill(null);
-    const numEmptyAroundAtlas = Array(
-      exportData[0][exportData[0].length - 1] === 'Median' ? 0 : 1
-    ).fill(null);
+    const numEmptyAroundProj = (exportData[0].findIndex((val) => val === 'Median') - 1) * 2 + 1;
+    const nullCellsAfterProj = Array(numEmptyAroundProj - 1).fill(null);
+    const numEmptyAroundAtlas = (exportData[0][exportData[0].length - 1] === 'Median' ? 0 : 1) * 2 + 1;
+    const nullCellsAfterAtlas = Array(numEmptyAroundAtlas).fill(null);
     const lng = (
       Math.round(selectedLocation.coords.lng * 10000) / 10000
     ).toFixed(4);
@@ -31,12 +29,10 @@ export default function ExcelDownloadButton() {
 
     const tableHeader = [
       null,
-      ...numEmptyAroundProj,
-      `Projected ${timeFrame} Depth (inches)`,
-      ...numEmptyAroundProj,
-      ...numEmptyAroundAtlas,
-      'Atlas 14 (inches)',
-      ...numEmptyAroundAtlas,
+      {span: numEmptyAroundProj, value: `Projected ${timeFrame} Depth (inches)`, align: 'center'},
+      ...nullCellsAfterProj,
+      {span: numEmptyAroundAtlas, value: 'Atlas 14 (inches)', align: 'center'},
+      ...nullCellsAfterAtlas
     ];
 
     const span = Math.max(8, tableHeader.length)
@@ -51,7 +47,7 @@ export default function ExcelDownloadButton() {
       [{value: `${selectByOptions.text} of Selection:`}, {value: selectedLocation.name}],
       [{value: 'State of Selection:'}, {value: selectedLocation.state_abbr}],
       [{value: 'Annual Exceedance Probability:'}, {value: `${100 / parseInt(returnPeriod)}%`}],
-      [{value: 'Emission Scenario:'}, {value: scenario.length === 2 ? scenario.split('').join('.') : scenario.toUpperCase()}],
+      [{value: 'Emission Scenario:'}, {value: scenario.length === 2 ? scenario.split('').join('.') : `SSP${scenario.slice(3,4)}-${scenario.slice(4,5)}.${scenario.slice(5,6)}`}],
       [{value: 'Time Period:'}, {value: timeFrame}],
       [null],
       [null],
