@@ -39,7 +39,6 @@ export default function MapComponent() {
 
   useEffect(() => {
     if (mapRef.current) {
-      console.log('fired in map useeffect');
       overlayInfo.forEach((overlay) => {
         const layerId = overlay.name + '-fill';
         const source = overlay.name + '-colors';
